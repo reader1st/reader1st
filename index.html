@@ -55,7 +55,7 @@
             <!-- Political Updates Column -->
             <div class="card">
                 <h3 id="title-politics" class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
-                <ul class="text-sm space-y-2 text-blue-200">
+                <ul class="text-sm space-y-2 text-blue-200" id="politics-list">
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක</a></li>
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස</a></li>
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ</a></li>
@@ -67,7 +67,7 @@
             <!-- Sports & Public Services -->
             <div class="card">
                 <h3 id="title-services" class="text-lg font-bold text-blue-300 mb-2">🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා</h3>
-                <div class="text-xs space-y-2">
+                <div class="text-xs space-y-2" id="services-list">
                     <p><strong>Sports:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Cricket</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC Official</a></p>
                     <hr class="border-gray-700">
                     <p class="space-y-1"><strong>සේවා:</strong><br>
@@ -92,7 +92,23 @@
                 cartoonTitle: "🎨 අද කාටූනය (අරුණ)",
                 cartoonDesc: "Aruna Newspaper Cartoon Auto-Fetcher",
                 politicsTitle: "🗣️ දේශපාලඥයින් අද කී කතා",
-                servicesTitle: "🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා"
+                politicsList: `
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">රනිල් වික්‍රමසිංහ | චන්ද්‍රිකා බණ්ඩාරනායක</a></li>
+                `,
+                servicesTitle: "🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා",
+                servicesList: `
+                    <p><strong>ක්‍රීඩා:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා ක්‍රිකට්</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC නිල වෙබ් අඩවිය</a></p>
+                    <hr class="border-gray-700">
+                    <p class="space-y-1"><strong>රජයේ සේවා:</strong><br>
+                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">විභාග දෙපාර්තමේන්තුව</a><br>
+                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා පොලීසිය</a><br>
+                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">අස්වැසුම ලේකම් කාර්යාලය</a>
+                    </p>
+                `
             },
             ta: {
                 newsTitle: "🔴 செய்தித்தாள்கள் மற்றும் முக்கிய செய்திகள்",
@@ -102,7 +118,23 @@
                 cartoonTitle: "🎨 இன்றைய கார்ட்டூன் (அருண)",
                 cartoonDesc: "அருண செய்தித்தாளின் இன்றைய கார்ட்டூன்",
                 politicsTitle: "🗣️ அரசியல்வாதிகளின் இன்றைய உரைகள்",
-                servicesTitle: "🏏 கிரிக்கெட் மற்றும் 🏛️ அரசு சேவைகள்"
+                politicsList: `
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">அனுர குமார திசாநாயக்க</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">சஜித் பிரேமதாச</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">நாமல் ராஜபக்ஷ</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">திலித் ஜயவீர | பிமல் ரத்நாயக்க</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">ரணில் விக்கிரமசிங்க | சந்திரிகா பண்டாரநாயக்க</a></li>
+                `,
+                servicesTitle: "🏏 கிரிக்கெட் மற்றும் 🏛️ அரசு சேவைகள்",
+                servicesList: `
+                    <p><strong>விளையாட்டு:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை கிரிக்கெட்</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ஐ.சி.சி அதிகாரப்பூர்வ தளம்</a></p>
+                    <hr class="border-gray-700">
+                    <p class="space-y-1"><strong>அரசு சேவைகள்:</strong><br>
+                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">பரீட்சைத் திணைக்களம்</a><br>
+                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை பொலிஸ்</a><br>
+                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">அஸ்வசும செயலகம்</a>
+                    </p>
+                `
             },
             en: {
                 newsTitle: "🔴 Newspapers & Top Headlines (Auto Updated)",
@@ -112,7 +144,23 @@
                 cartoonTitle: "🎨 Today's Cartoon (Aruna)",
                 cartoonDesc: "Aruna Newspaper Daily Cartoon Fetcher",
                 politicsTitle: "🗣️ Today's Political Statements",
-                servicesTitle: "🏏 Cricket & 🏛️ Public Services"
+                politicsList: `
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Anura Kumara Dissanayake</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Sajith Premadasa</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Namal Rajapaksa</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Dilith Jayaweera | Bimal Rathnayake</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Ranil Wickremesinghe | Chandrika Bandaranaike</a></li>
+                `,
+                servicesTitle: "🏏 Cricket & 🏛️ Public Services",
+                servicesList: `
+                    <p><strong>Sports:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Cricket</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC Official</a></p>
+                    <hr class="border-gray-700">
+                    <p class="space-y-1"><strong>Public Services:</strong><br>
+                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">Department of Examinations</a><br>
+                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Police</a><br>
+                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">Aswesuma Welfare Secretariat</a>
+                    </p>
+                `
             }
         };
 
@@ -124,7 +172,9 @@
             document.getElementById('title-cartoon').innerText = translations[lang].cartoonTitle;
             document.getElementById('cartoon-desc').innerText = translations[lang].cartoonDesc;
             document.getElementById('title-politics').innerText = translations[lang].politicsTitle;
+            document.getElementById('politics-list').innerHTML = translations[lang].politicsList;
             document.getElementById('title-services').innerText = translations[lang].servicesTitle;
+            document.getElementById('services-list').innerHTML = translations[lang].servicesList;
         }
     </script>
 
