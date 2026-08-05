@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>readeronenews | Daily Sri Lanka News & Live Updates</title>
+    <!-- Tailwind CSS (Dark Blue Theme) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0b132b; color: #ffffff; }
+        .card { background-color: #1c2541; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header & Language Switcher -->
+    <header class="bg-[#1c2541] p-4 shadow-lg border-b border-blue-800">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold tracking-wider text-blue-400">readeronenews</h1>
+            <div class="space-x-2">
+                <button class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
+                <button class="bg-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-600">தமிழ்</button>
+                <button class="bg-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-600">English</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Main News Column -->
+        <div class="md:col-span-2">
+            <h2 class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔴 පුවත්පත් සහ ප්‍රධාන පුවත් (Auto Updated)</h2>
+            <div id="news-container" class="card space-y-4">
+                <p class="text-gray-300"><b>පුවත්පත් අඩවි:</b> Ada Derana | Hiru News | Maubima | Lankadeepa | Divaina | Dinamina | Weerakesari | The Island | Daily Mirror | Morning Leader</p>
+                <p class="text-xs text-blue-400">Daily Auto Sync Active...</p>
+            </div>
+
+            <!-- Parliament Live Section -->
+            <h2 class="text-xl font-bold my-4 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
+            <div class="card aspect-video">
+                <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/live_stream?channel=UCparliament" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Sidebar Section -->
+        <div>
+            <!-- Aruna Cartoon of the Day -->
+            <div class="card">
+                <h3 class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය (අරුණ)</h3>
+                <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
+                    <p class="text-xs text-gray-400">Aruna Newspaper Cartoon Auto-Fetcher</p>
+                </div>
+            </div>
+
+            <!-- Political Updates Column -->
+            <div class="card">
+                <h3 class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
+                <ul class="text-sm space-y-2 text-blue-200">
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">රනිල් වික්‍රමසිංහ | චන්ද්‍රිකා බණ්ඩාරනායක</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">මෛත්‍රීපාල සිරිසේන | ගෝඨාභය රාජපක්ෂ</a></li>
+                </ul>
+            </div>
+
+            <!-- Sports & Public Services -->
+            <div class="card">
+                <h3 class="text-lg font-bold text-blue-300 mb-2">🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා</h3>
+                <div class="text-xs space-y-2">
+                    <p><strong>Sports:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Cricket</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC Official</a></p>
+                    <hr class="border-gray-700">
+                    <p class="space-y-1"><strong>සේවා:</strong><br>
+                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">විභාග දෙපාර්තමේන්තුව</a><br>
+                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා පොලීසිය</a><br>
+                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">අස්වැසුම ලේකම් කාර්යාලය</a><br>
+                        • <a href="https://moe.gov.lk" target="_blank" class="text-blue-400 hover:underline">අධ්‍යාපන අමාත්‍යාංශය</a><br>
+                        • <a href="https://health.gov.lk" target="_blank" class="text-blue-400 hover:underline">සෞඛ්‍ය අමාත්‍යාංශය</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
