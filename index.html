@@ -29,7 +29,7 @@
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 අද දෙරණ වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Ada Derana Top Trending)</h2>
+            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)</h2>
             
             <!-- Trending News Container -->
             <div id="news-container" class="space-y-4">
@@ -40,7 +40,7 @@
             <div class="card mt-6">
                 <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:</h3>
                 <div class="flex flex-wrap gap-2 text-xs text-blue-200">
-                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-red-700/80 font-bold px-2.5 py-1 rounded hover:bg-red-600 text-white">Ada Derana Official ↗</a>
+                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700">Ada Derana Official ↗</a>
                     <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Hiru News ↗</a>
                     <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Lankadeepa ↗</a>
                     <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Maubima ↗</a>
@@ -63,9 +63,9 @@
         <div>
             <!-- Aruna Cartoon of the Day -->
             <div class="card">
-                <h3 id="title-cartoon" class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය (අරුණ)</h3>
+                <h3 id="title-cartoon" class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
                 <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
-                    <p id="cartoon-desc" class="text-xs text-gray-400">Aruna Newspaper Cartoon Auto-Fetcher</p>
+                    <p id="cartoon-desc" class="text-xs text-gray-400">Daily Newspaper Cartoon Auto-Fetcher</p>
                 </div>
             </div>
 
@@ -97,7 +97,6 @@
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
             <div class="mt-4 pt-3 border-t border-slate-700 flex justify-between items-center">
                 <span id="modalTime" class="text-xs text-gray-400"></span>
-                <a id="modalLink" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-4 py-2 rounded font-bold">සම්පූර්ණ ලිපිය නිල වෙබ් අඩවියෙන් කියවන්න ↗</a>
             </div>
         </div>
     </div>
@@ -106,35 +105,32 @@
     <script>
         const translations = {
             si: {
-                newsTitle: "🔥 අද දෙරණ වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Ada Derana Top Trending)",
+                newsTitle: "🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)",
                 quickLinksTitle: "📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:",
                 newsList: [
                     { 
-                        title: "🔴 [අද දෙරණ Hot News] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
-                        source: "අද දෙරණ (Ada Derana)", 
+                        title: "🔴 [Hot News] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
+                        source: "readeronenews Special", 
                         time: "තත්පර කිහිපයකට පෙර", 
-                        link: "https://sinhala.adaderana.lk", 
                         body: "දිවයින හරහා සහ දිවයින වටා වන මුහුදු ප්‍රදේශවල සුළඟේ වේගය පැයට කිලෝමීටර් 50-60 දක්වා වැඩිවිය හැකි බවත්, ඇතැම් ස්ථානවලට මිලිමීටර් 100ට වැඩි තද වැසි ඇතිවිය හැකි බවත් කාලගුණ විද්‍යා දෙපාර්තමේන්තුව නිවේදනය කරයි.",
                         isTop: true 
                     },
                     { 
                         title: "ඉන්දීය විදේශ ලේකම් අග්‍රාමාත්‍ය ආචාර්ය හරිනි අමරසූරිය සහ විපක්ෂ නායක හමුවෙයි", 
-                        source: "අද දෙරණ", 
+                        source: "readeronenews", 
                         time: "මීට පැයකට පෙර", 
-                        link: "https://sinhala.adaderana.lk",
                         body: "ශ්‍රී ලංකාවේ නිල සංචාරයක නිරත ඉන්දීය විදේශ ලේකම්වරයා අද දිනයේ රාජ්‍ය තාන්ත්‍රික හමු කිහිපයකට එක්විය."
                     },
                     { 
                         title: "පාර්ලිමේන්තුවේ අද පැවැත්වෙන විශේෂ සාකච්ඡා සහ ඉදිරිපත් වන පනත් කෙටුම්පත්", 
-                        source: "හිරු නිවුස්", 
+                        source: "readeronenews", 
                         time: "මීට පැය 2කට පෙර", 
-                        link: "https://www.hirunews.lk",
                         body: "නව පනත් කෙටුම්පත් කිහිපයක් පිළිබඳව අද දිනයේ පාර්ලිමේන්තුවේදී විශේෂ විවාදයක් පැවැත්වීමට නියමිතව ඇත."
                     }
                 ],
                 parliamentTitle: "🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)",
-                cartoonTitle: "🎨 අද කාටූනය (අරුණ)",
-                cartoonDesc: "අරුණ පුවත්පතේ අද දින කාටූනය",
+                cartoonTitle: "🎨 අද කාටූනය",
+                cartoonDesc: "අද දින පුවත්පත් කාටූනය",
                 politicsTitle: "🗣️ දේශපාලඥයින් අද කී කතා",
                 politicsList: `
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක ↗</a></li>
@@ -155,35 +151,32 @@
                 `
             },
             ta: {
-                newsTitle: "🔥 அதா தெரண அதிகம் பார்க்கப்பட்ட செய்திகள் (Ada Derana Top Trending)",
+                newsTitle: "🔥 அதிகம் பார்க்கப்பட்ட முக்கிய செய்திகள் (Top Trending News)",
                 quickLinksTitle: "📰 முக்கிய செய்தித்தாள்கள் மற்றும் ஊடகங்கள்:",
                 newsList: [
                     { 
-                        title: "🔴 [Ada Derana Hot News] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
-                        source: "அடா தெரண (Ada Derana)", 
+                        title: "🔴 [Hot News] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
+                        source: "readeronenews Special", 
                         time: "சில வினாடிகளுக்கு முன்", 
-                        link: "https://tamil.adaderana.lk", 
                         body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் மணிக்கு 50-60 கி.மீ வரை அதிகரிக்கக்கூடும் என வளிமண்டலவியல் திணைக்களம் எச்சரித்துள்ளது.",
                         isTop: true 
                     },
                     { 
                         title: "இந்திய வெளியுறவுச் செயலாளர் பிரதமர் கலாநிதி ஹரிணி அமரசூரிய மற்றும் எதிர்க்கட்சித் தலைவரை சந்தித்தார்", 
-                        source: "அடா தெரண", 
+                        source: "readeronenews", 
                         time: "1 மணி நேரத்திற்கு முன்", 
-                        link: "https://tamil.adaderana.lk",
                         body: "இலங்கைக்கு உத்தியோகபூர்வ விஜயம் மேற்கொண்டுள்ள இந்திய வெளியுறவுச் செயலாளர் இன்று பல முக்கிய சந்திப்புகளில் ஈடுபட்டார்."
                     },
                     { 
                         title: "பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள் மற்றும் தீர்மானங்கள்", 
-                        source: "ஹிரு நியூஸ்", 
+                        source: "readeronenews", 
                         time: "2 மணி நேரத்திற்கு முன்", 
-                        link: "https://www.hirunews.lk",
                         body: "இன்று பாராளுமன்றத்தில் பல புதிய சட்டமூலங்கள் தொடர்பில் விவாதங்கள் நடைபெறவுள்ளன."
                     }
                 ],
                 parliamentTitle: "🏛️ இலங்கை பாராளுமன்றம் (நேரலை)",
-                cartoonTitle: "🎨 இன்றைய கார்ட்டூன் (அருண)",
-                cartoonDesc: "அருண செய்தித்தாளின் இன்றைய கார்ட்டூன்",
+                cartoonTitle: "🎨 இன்றைய கார்ட்டூன்",
+                cartoonDesc: "இன்றைய செய்தித்தாளின் கார்ட்டூன்",
                 politicsTitle: "🗣️ அரசியல்வாதிகளின் இன்றைய உரைகள்",
                 politicsList: `
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">அனுர குமார திசாநாயக்க ↗</a></li>
@@ -204,35 +197,32 @@
                 `
             },
             en: {
-                newsTitle: "🔥 Ada Derana Most Viewed News (Ada Derana Top Trending)",
+                newsTitle: "🔥 Top Trending News",
                 quickLinksTitle: "📰 Major Newspapers & Media Networks:",
                 newsList: [
                     { 
-                        title: "🔴 [Ada Derana Hot News] Red alert issued: Heavy rain and gusty winds predicted across several island regions", 
-                        source: "Ada Derana Official", 
+                        title: "🔴 [Hot News] Red alert issued: Heavy rain and gusty winds predicted across several island regions", 
+                        source: "readeronenews Special", 
                         time: "Just now", 
-                        link: "https://www.adaderana.lk", 
                         body: "Wind speeds may increase up to 50-60 kmph across the island and surrounding sea areas, according to the Department of Meteorology.",
                         isTop: true 
                     },
                     { 
                         title: "Indian Foreign Secretary Vikram Misri Meets Prime Minister Dr. Harini Amarasuriya & Opposition Leader", 
-                        source: "Ada Derana", 
+                        source: "readeronenews", 
                         time: "1 hour ago", 
-                        link: "https://www.adaderana.lk",
                         body: "Indian Foreign Secretary engaged in high-level diplomatic meetings in Colombo today."
                     },
                     { 
                         title: "Key Debates and Parliament Proceedings Scheduled for Today", 
-                        source: "Hiru News", 
+                        source: "readeronenews", 
                         time: "2 hours ago", 
-                        link: "https://www.hirunews.lk",
                         body: "Several important bills and parliamentary discussions are scheduled for today's session."
                     }
                 ],
                 parliamentTitle: "🏛️ Parliament of Sri Lanka (Live Stream)",
-                cartoonTitle: "🎨 Today's Cartoon (Aruna)",
-                cartoonDesc: "Aruna Newspaper Daily Cartoon Fetcher",
+                cartoonTitle: "🎨 Today's Cartoon",
+                cartoonDesc: "Daily Newspaper Cartoon",
                 politicsTitle: "🗣️ Today's Political Statements",
                 politicsList: `
                     <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Anura Kumara Dissanayake ↗</a></li>
@@ -293,7 +283,6 @@
             document.getElementById('modalSource').innerText = item.source;
             document.getElementById('modalTime').innerText = item.time;
             document.getElementById('modalBody').innerText = item.body;
-            document.getElementById('modalLink').href = item.link;
             document.getElementById('newsModal').classList.remove('hidden');
         }
 
