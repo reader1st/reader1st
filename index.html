@@ -31,9 +31,9 @@
         <div class="md:col-span-2">
             <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Top Media Feed)</h2>
             
-            <!-- Ordered News Feed Container -->
+            <!-- Ordered News Feed Container (All with Images) -->
             <div id="news-container" class="space-y-4">
-                <!-- Media News Feed dynamically ordered via JS -->
+                <!-- Media News Feed dynamically generated via JS -->
             </div>
 
             <!-- Quick Access News Links -->
@@ -93,7 +93,7 @@
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
             <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2 py-0.5 rounded font-bold"></span>
-            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
+            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3">
             <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
             <div class="mt-4 pt-3 border-t border-slate-700 flex justify-between items-center">
@@ -199,25 +199,13 @@
                 newsTitle: "🔥 முக்கிய ஊடகங்களின் செய்திகள் (Media Feed)",
                 quickLinksTitle: "📰 முக்கிய செய்தித்தாள்கள் மற்றும் ஊடகங்கள்:",
                 newsList: [
-                    { 
-                        source: "Ada Derana", 
-                        title: "🔴 [Ada Derana] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
-                        time: "சில வினாடிகளுக்கு முன்", 
-                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
-                        body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் அதிகரிக்கக்கூடும் என வளிமண்டலவியல் திணைக்களம் எச்சரித்துள்ளது."
-                    },
-                    { 
-                        source: "Hiru News", 
-                        title: "🔴 [Hiru News] பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள்", 
-                        time: "1 மணி நேரத்திற்கு முன்", 
-                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
-                        body: "இன்று பாராளுமன்றத்தில் பல புதிய சட்டமூலங்கள் தொடர்பில் விவாதங்கள் நடைபெறவுள்ளன."
-                    },
+                    { source: "Ada Derana", title: "🔴 [Ada Derana] நாட்டின் பல பகுதிகளில் பலத்த மழை - வானிலை எச்சரிக்கை", time: "சில வினாடிகளுக்கு முன்", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80", body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் அதிகரிக்கக்கூடும்." },
+                    { source: "Hiru News", title: "🔴 [Hiru News] பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள்", time: "1 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80", body: "இன்று பாராளுமன்றத்தில் புதிய சட்டமூலங்கள் விவாதிக்கப்படவுள்ளன." },
                     { source: "Lankadeepa", title: "🔴 [Lankadeepa] விவசாய மேம்பாட்டிற்கான புதிய திட்டங்கள் ஆரம்பம்", time: "2 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80", body: "விவசாயத் துறையை மேம்படுத்துவதற்காக புதிய திட்டங்கள் அறிமுகப்படுத்தப்பட்டுள்ளன." },
-                    { source: "Maubima", title: "🔴 [Maubima] எரிபொருள் மற்றும் மின்கட்டண திருத்தங்கள் பற்றிய அறிவிப்பு", time: "3 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "பொது பயன்பாடுகள் ஆணைக்குழு புதிய திருத்தங்களை பரிசீலித்து வருகிறது." },
-                    { source: "Divaina", title: "🔴 [Divaina] மலைநாட்டு ரயில் சேவைகள் வழமைக்கு திரும்பின", time: "4 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "சீரற்ற வானிலையால் தடைப்பட்ட ரயில் சேவைகள் மீண்டும் ஆரம்பமாகியுள்ளன." },
+                    { source: "Maubima", title: "🔴 [Maubima] எரிபொருள் மற்றும் மின்கட்டண திருத்தங்கள் பற்றிய அறிவிப்பு", time: "3 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "பொது பயன்பாடுகள் ஆணைக்குழு புதிய திருத்தங்களை பரிசீலிக்கிறது." },
+                    { source: "Divaina", title: "🔴 [Divaina] மலைநாட்டு ரயில் சேவைகள் வழமைக்கு திரும்பின", time: "4 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "தடைப்பட்ட ரயில் சேவைகள் மீண்டும் ஆரம்பமாகியுள்ளன." },
                     { source: "Dinamina", title: "🔴 [Dinamina] சுகாதாரத் துறையில் புதிய அபிவிருத்தித் திட்டங்கள்", time: "5 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", body: "மருத்துவமனைகளை நவீனமயமாக்க நடவடிக்கை எடுக்கப்பட்டுள்ளது." },
-                    { source: "Weerakesari", title: "🔴 [Weerakesari] தோட்டப்புற வீடமைப்பு திட்டங்களுக்கு புதிய நிதியுதவி", time: "6 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "தோட்டப்புற மக்களின் வீடமைப்பு திட்டங்களை விரைவுபடுத்த தீர்மானிக்கப்பட்டுள்ளது." },
+                    { source: "Weerakesari", title: "🔴 [Weerakesari] தோட்டப்புற வீடமைப்பு திட்டங்களுக்கு புதிய நிதியுதவி", time: "6 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "வீடமைப்பு திட்டங்களை விரைவுபடுத்த தீர்மானிக்கப்பட்டுள்ளது." },
                     { source: "The Island", title: "🔴 [The Island] Central Bank highlights economic indicators", time: "7 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", body: "Economic progress remains steady according to official releases." },
                     { source: "Daily Mirror", title: "🔴 [Daily Mirror] Diplomatic talks enhance trade ties", time: "8 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", body: "Discussions focused on trade cooperation and regional ties." }
                 ],
@@ -296,19 +284,15 @@
 
             currentLangList = translations[lang].newsList;
 
-            // Render Ordered News Feed Cards
+            // Render All Ordered News Cards with Images
             const newsContainer = document.getElementById('news-container');
             newsContainer.innerHTML = '';
             translations[lang].newsList.forEach((news, idx) => {
-                const imageHtml = news.image 
-                    ? `<img src="${news.image}" alt="News Image" class="w-full h-48 object-cover rounded-md mb-3">` 
-                    : '';
-
                 newsContainer.innerHTML += `
                     <div class="card border border-slate-700 hover:border-blue-500 transition p-4">
-                        ${imageHtml}
-                        <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold text-blue-200 hover:text-white block mb-2 w-full">${news.title}</button>
-                        <div class="flex justify-between items-center text-xs text-gray-400">
+                        <img src="${news.image}" alt="${news.source} News Image" class="w-full h-52 object-cover rounded-md mb-3">
+                        <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold text-blue-200 hover:text-white block mb-2 w-full leading-snug">${news.title}</button>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-2">
                             <span class="bg-blue-900/80 text-blue-300 px-2.5 py-1 rounded font-bold">${news.source}</span>
                             <span>${news.time}</span>
                         </div>
@@ -326,12 +310,7 @@
             document.getElementById('modalBody').innerText = item.body;
             
             const modalImg = document.getElementById('modalImage');
-            if (item.image) {
-                modalImg.src = item.image;
-                modalImg.classList.remove('hidden');
-            } else {
-                modalImg.classList.add('hidden');
-            }
+            modalImg.src = item.image;
 
             document.getElementById('newsModal').classList.remove('hidden');
         }
