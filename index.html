@@ -29,11 +29,11 @@
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)</h2>
+            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Top Media Feed)</h2>
             
-            <!-- Trending News Container -->
+            <!-- Ordered News Feed Container -->
             <div id="news-container" class="space-y-4">
-                <!-- News items with Auto-Images dynamically loaded via JS -->
+                <!-- Media News Feed dynamically ordered via JS -->
             </div>
 
             <!-- Quick Access News Links -->
@@ -61,7 +61,7 @@
 
         <!-- Sidebar Section -->
         <div>
-            <!-- Aruna Cartoon of the Day -->
+            <!-- Cartoon of the Day -->
             <div class="card">
                 <h3 id="title-cartoon" class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
                 <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
@@ -73,7 +73,7 @@
             <div class="card">
                 <h3 id="title-politics" class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
                 <ul class="text-sm space-y-2 text-blue-200" id="politics-list">
-                    <!-- Politics List dynamically loaded -->
+                    <!-- Politics List -->
                 </ul>
             </div>
 
@@ -81,22 +81,19 @@
             <div class="card">
                 <h3 id="title-services" class="text-lg font-bold text-blue-300 mb-2">🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා</h3>
                 <div class="text-xs space-y-2" id="services-list">
-                    <!-- Services dynamically loaded -->
+                    <!-- Services -->
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- In-App Quick Read Modal -->
+    <!-- Quick Read Modal -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
             <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2 py-0.5 rounded font-bold"></span>
-            
-            <!-- Modal Image -->
             <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
-            
             <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
             <div class="mt-4 pt-3 border-t border-slate-700 flex justify-between items-center">
@@ -105,34 +102,75 @@
         </div>
     </div>
 
-    <!-- Language Switcher & Content Script -->
+    <!-- Language & Ordered Feed Script -->
     <script>
         const translations = {
             si: {
-                newsTitle: "🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)",
+                newsTitle: "🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Media Feed)",
                 quickLinksTitle: "📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:",
                 newsList: [
                     { 
-                        title: "🔴 [Hot News] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
-                        source: "readeronenews Special", 
-                        time: "තත්පර කිහිපයකට පෙර", 
+                        source: "Ada Derana", 
+                        title: "🔴 [Ada Derana] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
+                        time: "මීට තත්පර කිහිපයකට පෙර", 
                         image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
-                        body: "දිවයින හරහා සහ දිවයින වටා වන මුහුදු ප්‍රදේශවල සුළඟේ වේගය පැයට කිලෝමීටර් 50-60 දක්වා වැඩිවිය හැකි බවත්, ඇතැම් ස්ථානවලට මිලිමීටර් 100ට වැඩි තද වැසි ඇතිවිය හැකි බවත් කාලගුණ විද්‍යා දෙපාර්තමේන්තුව නිවේදනය කරයි.",
-                        isTop: true 
+                        body: "දිවයින හරහා සහ දිවයින වටා වන මුහුදු ප්‍රදේශවල සුළඟේ වේගය පැයට කිලෝමීටර් 50-60 දක්වා වැඩිවිය හැකි බව කාලගුණ විද්‍යා දෙපාර්තමේන්තුව කියයි."
                     },
                     { 
-                        title: "ඉන්දීය විදේශ ලේකම් අග්‍රාමාත්‍ය ආචාර්ය හරිනි අමරසූරිය සහ විපක්ෂ නායක හමුවෙයි", 
-                        source: "readeronenews", 
+                        source: "Hiru News", 
+                        title: "🔴 [Hiru News] පාර්ලිමේන්තුවේ අද පැවැත්වෙන විශේෂ සාකච්ඡා සහ ඉදිරිපත් වන පනත් කෙටුම්පත්", 
                         time: "මීට පැයකට පෙර", 
-                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
-                        body: "ශ්‍රී ලංකාවේ නිල සංචාරයක නිරත ඉන්දීය විදේශ ලේකම්වරයා අද දිනයේ රාජ්‍ය තාන්ත්‍රික හමු කිහිපයකට එක්විය."
-                    },
-                    { 
-                        title: "පාර්ලිමේන්තුවේ අද පැවැත්වෙන විශේෂ සාකච්ඡා සහ ඉදිරිපත් වන පනත් කෙටුම්පත්", 
-                        source: "readeronenews", 
-                        time: "මීට පැය 2කට පෙර", 
                         image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
                         body: "නව පනත් කෙටුම්පත් කිහිපයක් පිළිබඳව අද දිනයේ පාර්ලිමේන්තුවේදී විශේෂ විවාදයක් පැවැත්වීමට නියමිතව ඇත."
+                    },
+                    { 
+                        source: "Lankadeepa", 
+                        title: "🔴 [Lankadeepa] තේ සහ පොල් වගාවන් ආරක්ෂා කරගැනීමට විශේෂ රජයේ වැඩපිළිවෙළක්", 
+                        time: "මීට පැය 2කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
+                        body: "දේශීය කෘෂිකර්මාන්තය නැංවීම සඳහා අලුත්ම මුලපිරීමක් අද දින ආරම්භ විය."
+                    },
+                    { 
+                        source: "Maubima", 
+                        title: "🔴 [Maubima] ඉන්ධන සහ විදුලි ගාස්තු සංශෝධනය සම්බන්ධයෙන් විශේෂ නිවේදනයක්", 
+                        time: "මීට පැය 3කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+                        body: "මහජන උපයෝගිතා කොමිෂන් සභාව විසින් ඉදිරි කාලසීමාව සඳහා වන සංශෝධන සලකා බලයි."
+                    },
+                    { 
+                        source: "Divaina", 
+                        title: "🔴 [Divaina] උඩරට දුම්රිය මාර්ගයේ ගමනාගමන කටයුතු යථා තත්ත්වයට", 
+                        time: "මීට පැය 4කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80",
+                        body: "පැවති අයහපත් කාලගුණය හේතුවෙන් බාධා පැමිණි දුම්රිය ධාවනය නැවත සාමාන්‍ය පරිදි සිදුවේ."
+                    },
+                    { 
+                        source: "Dinamina", 
+                        title: "🔴 [Dinamina] සෞඛ්‍ය ක්ෂේත්‍රයේ නව ව්‍යාපෘති කිහිපයක් සුවසෙවන අමාත්‍යාංශයෙන්", 
+                        time: "මීට පැය 5කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80",
+                        body: "ජනතාවට ගුණාත්මක සෞඛ්‍ය සේවාවක් සපයා දීමට රෝහල් පද්ධතිය නවීකරණය කෙරේ."
+                    },
+                    { 
+                        source: "Weerakesari", 
+                        title: "🔴 [Weerakesari] වතුකරයේ ජනතාවගේ නිවාස ව්‍යාපෘති සඳහා නව පියවරක්", 
+                        time: "මීට පැය 6කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+                        body: "වතු නිවාස සංවර්ධන අධිකාරිය මගින් ක්‍රියාත්මක ව්‍යාපෘති වේගවත් කිරීමට තීරණය කර ඇත."
+                    },
+                    { 
+                        source: "The Island", 
+                        title: "🔴 [The Island] Central Bank highlights stable financial growth indicators", 
+                        time: "මීට පැය 7කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
+                        body: "Economic updates from the Central Bank show promising progress in key sectors."
+                    },
+                    { 
+                        source: "Daily Mirror", 
+                        title: "🔴 [Daily Mirror] Diplomatic talks enhance regional trade and cooperation", 
+                        time: "මීට පැය 8කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
+                        body: "Senior officials discuss strategic ties and trade expansions across the region."
                     }
                 ],
                 parliamentTitle: "🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)",
@@ -158,31 +196,30 @@
                 `
             },
             ta: {
-                newsTitle: "🔥 அதிகம் பார்க்கப்பட்ட முக்கிய செய்திகள் (Top Trending News)",
+                newsTitle: "🔥 முக்கிய ஊடகங்களின் செய்திகள் (Media Feed)",
                 quickLinksTitle: "📰 முக்கிய செய்தித்தாள்கள் மற்றும் ஊடகங்கள்:",
                 newsList: [
                     { 
-                        title: "🔴 [Hot News] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
-                        source: "readeronenews Special", 
+                        source: "Ada Derana", 
+                        title: "🔴 [Ada Derana] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
                         time: "சில வினாடிகளுக்கு முன்", 
                         image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
-                        body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் மணிக்கு 50-60 கி.மீ வரை அதிகரிக்கக்கூடும் என வளிமண்டலவியல் திணைக்களம் எச்சரித்துள்ளது.",
-                        isTop: true 
+                        body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் அதிகரிக்கக்கூடும் என வளிமண்டலவியல் திணைக்களம் எச்சரித்துள்ளது."
                     },
                     { 
-                        title: "இந்திய வெளியுறவுச் செயலாளர் பிரதமர் கலாநிதி ஹரிணி அமரசூரிய மற்றும் எதிர்க்கட்சித் தலைவரை சந்தித்தார்", 
-                        source: "readeronenews", 
+                        source: "Hiru News", 
+                        title: "🔴 [Hiru News] பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள்", 
                         time: "1 மணி நேரத்திற்கு முன்", 
-                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
-                        body: "இலங்கைக்கு உத்தியோகபூர்வ விஜயம் மேற்கொண்டுள்ள இந்திய வெளியுறவுச் செயலாளர் இன்று பல முக்கிய சந்திப்புகளில் ஈடுபட்டார்."
-                    },
-                    { 
-                        title: "பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள் மற்றும் தீர்மானங்கள்", 
-                        source: "readeronenews", 
-                        time: "2 மணி நேரத்திற்கு முன்", 
                         image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
                         body: "இன்று பாராளுமன்றத்தில் பல புதிய சட்டமூலங்கள் தொடர்பில் விவாதங்கள் நடைபெறவுள்ளன."
-                    }
+                    },
+                    { source: "Lankadeepa", title: "🔴 [Lankadeepa] விவசாய மேம்பாட்டிற்கான புதிய திட்டங்கள் ஆரம்பம்", time: "2 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80", body: "விவசாயத் துறையை மேம்படுத்துவதற்காக புதிய திட்டங்கள் அறிமுகப்படுத்தப்பட்டுள்ளன." },
+                    { source: "Maubima", title: "🔴 [Maubima] எரிபொருள் மற்றும் மின்கட்டண திருத்தங்கள் பற்றிய அறிவிப்பு", time: "3 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "பொது பயன்பாடுகள் ஆணைக்குழு புதிய திருத்தங்களை பரிசீலித்து வருகிறது." },
+                    { source: "Divaina", title: "🔴 [Divaina] மலைநாட்டு ரயில் சேவைகள் வழமைக்கு திரும்பின", time: "4 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "சீரற்ற வானிலையால் தடைப்பட்ட ரயில் சேவைகள் மீண்டும் ஆரம்பமாகியுள்ளன." },
+                    { source: "Dinamina", title: "🔴 [Dinamina] சுகாதாரத் துறையில் புதிய அபிவிருத்தித் திட்டங்கள்", time: "5 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", body: "மருத்துவமனைகளை நவீனமயமாக்க நடவடிக்கை எடுக்கப்பட்டுள்ளது." },
+                    { source: "Weerakesari", title: "🔴 [Weerakesari] தோட்டப்புற வீடமைப்பு திட்டங்களுக்கு புதிய நிதியுதவி", time: "6 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "தோட்டப்புற மக்களின் வீடமைப்பு திட்டங்களை விரைவுபடுத்த தீர்மானிக்கப்பட்டுள்ளது." },
+                    { source: "The Island", title: "🔴 [The Island] Central Bank highlights economic indicators", time: "7 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", body: "Economic progress remains steady according to official releases." },
+                    { source: "Daily Mirror", title: "🔴 [Daily Mirror] Diplomatic talks enhance trade ties", time: "8 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", body: "Discussions focused on trade cooperation and regional ties." }
                 ],
                 parliamentTitle: "🏛️ இலங்கை பாராளுமன்றம் (நேரலை)",
                 cartoonTitle: "🎨 இன்றைய கார்ட்டூன்",
@@ -207,31 +244,18 @@
                 `
             },
             en: {
-                newsTitle: "🔥 Top Trending News",
+                newsTitle: "🔥 Top Media Feed (In Order)",
                 quickLinksTitle: "📰 Major Newspapers & Media Networks:",
                 newsList: [
-                    { 
-                        title: "🔴 [Hot News] Red alert issued: Heavy rain and gusty winds predicted across several island regions", 
-                        source: "readeronenews Special", 
-                        time: "Just now", 
-                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
-                        body: "Wind speeds may increase up to 50-60 kmph across the island and surrounding sea areas, according to the Department of Meteorology.",
-                        isTop: true 
-                    },
-                    { 
-                        title: "Indian Foreign Secretary Vikram Misri Meets Prime Minister Dr. Harini Amarasuriya & Opposition Leader", 
-                        source: "readeronenews", 
-                        time: "1 hour ago", 
-                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
-                        body: "Indian Foreign Secretary engaged in high-level diplomatic meetings in Colombo today."
-                    },
-                    { 
-                        title: "Key Debates and Parliament Proceedings Scheduled for Today", 
-                        source: "readeronenews", 
-                        time: "2 hours ago", 
-                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
-                        body: "Several important bills and parliamentary discussions are scheduled for today's session."
-                    }
+                    { source: "Ada Derana", title: "🔴 [Ada Derana] Red alert issued: Heavy rain and gusty winds predicted", time: "Just now", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80", body: "Wind speeds may increase up to 50-60 kmph across the island." },
+                    { source: "Hiru News", title: "🔴 [Hiru News] Key Debates and Parliament Proceedings Scheduled for Today", time: "1 hour ago", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80", body: "Several important bills scheduled for discussion." },
+                    { source: "Lankadeepa", title: "🔴 [Lankadeepa] Special government plan to support tea and coconut plantation sectors", time: "2 hours ago", image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80", body: "Initiatives launched to boost agricultural output." },
+                    { source: "Maubima", title: "🔴 [Maubima] Announcement on fuel and electricity tariff reviews", time: "3 hours ago", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "PUCSL reviewing new tariff guidelines." },
+                    { source: "Divaina", title: "🔴 [Divaina] Main railway lines restored after weather interruptions", time: "4 hours ago", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "Train services resume normal operation." },
+                    { source: "Dinamina", title: "🔴 [Dinamina] Health Ministry introduces upgraded facilities for public hospitals", time: "5 hours ago", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", body: "Modernization project aims to improve health care accessibility." },
+                    { source: "Weerakesari", title: "🔴 [Weerakesari] New housing developments announced for plantation communities", time: "6 hours ago", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "Projects accelerated under plantation housing initiative." },
+                    { source: "The Island", title: "🔴 [The Island] Central Bank highlights stable financial growth indicators", time: "7 hours ago", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", body: "Reports show positive signs across key economic areas." },
+                    { source: "Daily Mirror", title: "🔴 [Daily Mirror] Diplomatic talks enhance regional trade and cooperation", time: "8 hours ago", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", body: "Bilateral trade discussions focused on economic expansion." }
                 ],
                 parliamentTitle: "🏛️ Parliament of Sri Lanka (Live Stream)",
                 cartoonTitle: "🎨 Today's Cartoon",
@@ -272,23 +296,20 @@
 
             currentLangList = translations[lang].newsList;
 
-            // Render News Cards with Auto-Images
+            // Render Ordered News Feed Cards
             const newsContainer = document.getElementById('news-container');
             newsContainer.innerHTML = '';
             translations[lang].newsList.forEach((news, idx) => {
-                const borderStyle = news.isTop ? 'border-red-500 bg-red-950/20' : 'border-transparent hover:border-blue-500';
-                
-                // Image HTML Auto-Loader
                 const imageHtml = news.image 
                     ? `<img src="${news.image}" alt="News Image" class="w-full h-48 object-cover rounded-md mb-3">` 
                     : '';
 
                 newsContainer.innerHTML += `
-                    <div class="card border ${borderStyle} transition p-4">
+                    <div class="card border border-slate-700 hover:border-blue-500 transition p-4">
                         ${imageHtml}
-                        <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold ${news.isTop ? 'text-red-300 hover:text-red-200' : 'text-blue-200 hover:text-white'} block mb-2 w-full">${news.title}</button>
+                        <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold text-blue-200 hover:text-white block mb-2 w-full">${news.title}</button>
                         <div class="flex justify-between items-center text-xs text-gray-400">
-                            <span class="${news.isTop ? 'bg-red-700 text-white' : 'bg-blue-900/60 text-blue-300'} px-2 py-0.5 rounded font-bold">${news.source}</span>
+                            <span class="bg-blue-900/80 text-blue-300 px-2.5 py-1 rounded font-bold">${news.source}</span>
                             <span>${news.time}</span>
                         </div>
                     </div>
@@ -296,7 +317,7 @@
             });
         }
 
-        // Modal Functions for News Preview
+        // Modal Functions
         function openNewsModal(index) {
             const item = currentLangList[index];
             document.getElementById('modalTitle').innerText = item.title;
@@ -319,7 +340,7 @@
             document.getElementById('newsModal').classList.add('hidden');
         }
 
-        // Default Load SI
+        // Default Load
         changeLang('si');
     </script>
 
