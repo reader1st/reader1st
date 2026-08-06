@@ -31,31 +31,31 @@
         <div class="md:col-span-2">
             <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Top Media Feed)</h2>
             
-            <!-- Ordered News Feed Container (All with Images) -->
+            <!-- Ordered News Feed Container -->
             <div id="news-container" class="space-y-4">
                 <!-- Media News Feed dynamically generated via JS -->
-            </div>
-
-            <!-- Quick Access News Links -->
-            <div class="card mt-6">
-                <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:</h3>
-                <div class="flex flex-wrap gap-2 text-xs text-blue-200">
-                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700">Ada Derana Official ↗</a>
-                    <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Hiru News ↗</a>
-                    <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Lankadeepa ↗</a>
-                    <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Maubima ↗</a>
-                    <a href="https://divaina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Divaina ↗</a>
-                    <a href="https://dinamina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Dinamina ↗</a>
-                    <a href="https://www.virakesari.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Weerakesari ↗</a>
-                    <a href="https://island.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">The Island ↗</a>
-                    <a href="https://www.dailymirror.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Daily Mirror ↗</a>
-                </div>
             </div>
 
             <!-- Parliament Live Section -->
             <h2 id="title-parliament" class="text-xl font-bold my-4 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
             <div class="card aspect-video">
                 <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/live_stream?channel=UCparliament" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <!-- Quick Access News Links (Moved Below Parliament) -->
+            <div class="card mt-6">
+                <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල වෙබ් අඩවි:</h3>
+                <div class="flex flex-wrap gap-2 text-xs text-blue-200">
+                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700 border border-blue-800">Ada Derana Official ↗</a>
+                    <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Hiru News ↗</a>
+                    <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Lankadeepa ↗</a>
+                    <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Maubima ↗</a>
+                    <a href="https://divaina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Divaina ↗</a>
+                    <a href="https://dinamina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Dinamina ↗</a>
+                    <a href="https://www.virakesari.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Weerakesari ↗</a>
+                    <a href="https://island.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">The Island ↗</a>
+                    <a href="https://www.dailymirror.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Daily Mirror ↗</a>
+                </div>
             </div>
         </div>
 
@@ -107,7 +107,7 @@
         const translations = {
             si: {
                 newsTitle: "🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Media Feed)",
-                quickLinksTitle: "📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:",
+                quickLinksTitle: "📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල වෙබ් අඩවි:",
                 newsList: [
                     { 
                         source: "Ada Derana", 
