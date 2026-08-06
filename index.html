@@ -40,15 +40,15 @@
             <div class="card mt-6">
                 <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල:</h3>
                 <div class="flex flex-wrap gap-2 text-xs text-blue-200">
-                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-red-700/80 font-bold px-2.5 py-1 rounded hover:bg-red-600 text-white">Ada Derana Official</a>
-                    <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Hiru News</a>
-                    <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Lankadeepa</a>
-                    <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Maubima</a>
-                    <a href="https://divaina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Divaina</a>
-                    <a href="https://dinamina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Dinamina</a>
-                    <a href="https://www.virakesari.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Weerakesari</a>
-                    <a href="https://island.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">The Island</a>
-                    <a href="https://www.dailymirror.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Daily Mirror</a>
+                    <button onclick="openModal('https://sinhala.adaderana.lk')" class="bg-red-700/80 font-bold px-2.5 py-1 rounded hover:bg-red-600 text-white">Ada Derana Official</button>
+                    <button onclick="openModal('https://www.hirunews.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Hiru News</button>
+                    <button onclick="openModal('https://www.lankadeepa.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Lankadeepa</button>
+                    <button onclick="openModal('https://maubima.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Maubima</button>
+                    <button onclick="openModal('https://divaina.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Divaina</button>
+                    <button onclick="openModal('https://dinamina.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Dinamina</button>
+                    <button onclick="openModal('https://www.virakesari.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Weerakesari</button>
+                    <button onclick="openModal('https://island.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">The Island</button>
+                    <button onclick="openModal('https://www.dailymirror.lk')" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700">Daily Mirror</button>
                 </div>
             </div>
 
@@ -88,6 +88,17 @@
 
     </div>
 
+    <!-- In-App News Viewer Modal Popup -->
+    <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-2 md:p-6">
+        <div class="bg-[#1c2541] w-full max-w-5xl h-[90vh] rounded-lg flex flex-col overflow-hidden shadow-2xl border border-blue-600">
+            <div class="p-3 bg-[#0b132b] flex justify-between items-center border-b border-blue-800">
+                <span class="text-sm text-blue-300 font-bold">📖 In-Site Reader Viewer</span>
+                <button onclick="closeModal()" class="bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-1 rounded font-bold">✕ වසන්න (Close)</button>
+            </div>
+            <iframe id="modalIframe" class="w-full h-full bg-white" src=""></iframe>
+        </div>
+    </div>
+
     <!-- Language Switcher & Content Script -->
     <script>
         const translations = {
@@ -112,12 +123,12 @@
                 `,
                 servicesTitle: "🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා",
                 servicesList: `
-                    <p><strong>ක්‍රීඩා:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා ක්‍රිකට්</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC නිල වෙබ් අඩවිය</a></p>
+                    <p><strong>ක්‍රීඩා:</strong> <button onclick="openModal('https://www.srilankacricket.lk')" class="text-blue-400 hover:underline">ශ්‍රී ලංකා ක්‍රිකට්</button> | <button onclick="openModal('https://www.icc-cricket.com')" class="text-blue-400 hover:underline">ICC නිල වෙබ් අඩවිය</button></p>
                     <hr class="border-gray-700">
                     <p class="space-y-1"><strong>රජයේ සේවා:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">විභාග දෙපාර්තමේන්තුව</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා පොලීසිය</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">අස්වැසුම ලේකම් කාර්යාලය</a>
+                        • <button onclick="openModal('https://doenets.lk')" class="text-blue-400 hover:underline">විභාග දෙපාර්තමේන්තුව</button><br>
+                        • <button onclick="openModal('https://police.lk')" class="text-blue-400 hover:underline">ශ්‍රී ලංකා පොලීසිය</button><br>
+                        • <button onclick="openModal('https://aswesuma.gov.lk')" class="text-blue-400 hover:underline">අස්වැසුම ලේකම් කාර්යාලය</button>
                     </p>
                 `
             },
@@ -142,12 +153,12 @@
                 `,
                 servicesTitle: "🏏 கிரிக்கெட் மற்றும் 🏛️ அரசு சேவைகள்",
                 servicesList: `
-                    <p><strong>விளையாட்டு:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை கிரிக்கெட்</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ஐ.சி.சி அதிகாரப்பூர்வ தளம்</a></p>
+                    <p><strong>விளையாட்டு:</strong> <button onclick="openModal('https://www.srilankacricket.lk')" class="text-blue-400 hover:underline">இலங்கை கிரிக்கெட்</button> | <button onclick="openModal('https://www.icc-cricket.com')" class="text-blue-400 hover:underline">ஐ.சி.சி அதிகாரப்பூர்வ தளம்</button></p>
                     <hr class="border-gray-700">
                     <p class="space-y-1"><strong>அரசு சேவைகள்:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">பரீட்சைத் திணைக்களம்</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை பொலிஸ்</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">அஸ்வசும செயலகம்</a>
+                        • <button onclick="openModal('https://doenets.lk')" class="text-blue-400 hover:underline">பரீட்சைத் திணைக்களம்</button><br>
+                        • <button onclick="openModal('https://police.lk')" class="text-blue-400 hover:underline">இலங்கை பொலிஸ்</button><br>
+                        • <button onclick="openModal('https://aswesuma.gov.lk')" class="text-blue-400 hover:underline">அஸ்வசும செயலகம்</button>
                     </p>
                 `
             },
@@ -172,12 +183,12 @@
                 `,
                 servicesTitle: "🏏 Cricket & 🏛️ Public Services",
                 servicesList: `
-                    <p><strong>Sports:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Cricket</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC Official</a></p>
+                    <p><strong>Sports:</strong> <button onclick="openModal('https://www.srilankacricket.lk')" class="text-blue-400 hover:underline">Sri Lanka Cricket</button> | <button onclick="openModal('https://www.icc-cricket.com')" class="text-blue-400 hover:underline">ICC Official</button></p>
                     <hr class="border-gray-700">
                     <p class="space-y-1"><strong>Public Services:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">Department of Examinations</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Police</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">Aswesuma Welfare Secretariat</a>
+                        • <button onclick="openModal('https://doenets.lk')" class="text-blue-400 hover:underline">Department of Examinations</button><br>
+                        • <button onclick="openModal('https://police.lk')" class="text-blue-400 hover:underline">Sri Lanka Police</button><br>
+                        • <button onclick="openModal('https://aswesuma.gov.lk')" class="text-blue-400 hover:underline">Aswesuma Welfare Secretariat</button>
                     </p>
                 `
             }
@@ -201,7 +212,7 @@
                 const borderStyle = news.isTop ? 'border-red-500 bg-red-950/20' : 'border-transparent hover:border-blue-500';
                 newsContainer.innerHTML += `
                     <div class="card border ${borderStyle} transition p-4">
-                        <a href="${news.link}" target="_blank" class="text-lg font-bold ${news.isTop ? 'text-red-300 hover:text-red-200' : 'text-blue-200 hover:text-white'} block mb-2">${news.title}</a>
+                        <button onclick="openModal('${news.link}')" class="text-left text-lg font-bold ${news.isTop ? 'text-red-300 hover:text-red-200' : 'text-blue-200 hover:text-white'} block mb-2 w-full">${news.title}</button>
                         <div class="flex justify-between items-center text-xs text-gray-400">
                             <span class="${news.isTop ? 'bg-red-700 text-white' : 'bg-blue-900/60 text-blue-300'} px-2 py-0.5 rounded font-bold">${news.source}</span>
                             <span>${news.time}</span>
@@ -209,6 +220,17 @@
                     </div>
                 `;
             });
+        }
+
+        // Modal Functions
+        function openModal(url) {
+            document.getElementById('modalIframe').src = url;
+            document.getElementById('newsModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.add('hidden');
+            document.getElementById('modalIframe').src = '';
         }
 
         // Default Load SI
