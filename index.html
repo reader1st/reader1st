@@ -33,7 +33,7 @@
             
             <!-- Trending News Container -->
             <div id="news-container" class="space-y-4">
-                <!-- News items dynamically loaded via JS -->
+                <!-- News items with Auto-Images dynamically loaded via JS -->
             </div>
 
             <!-- Quick Access News Links -->
@@ -90,9 +90,13 @@
 
     <!-- In-App Quick Read Modal -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative">
+        <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
             <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2 py-0.5 rounded font-bold"></span>
+            
+            <!-- Modal Image -->
+            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
+            
             <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
             <div class="mt-4 pt-3 border-t border-slate-700 flex justify-between items-center">
@@ -112,6 +116,7 @@
                         title: "🔴 [Hot News] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
                         source: "readeronenews Special", 
                         time: "තත්පර කිහිපයකට පෙර", 
+                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
                         body: "දිවයින හරහා සහ දිවයින වටා වන මුහුදු ප්‍රදේශවල සුළඟේ වේගය පැයට කිලෝමීටර් 50-60 දක්වා වැඩිවිය හැකි බවත්, ඇතැම් ස්ථානවලට මිලිමීටර් 100ට වැඩි තද වැසි ඇතිවිය හැකි බවත් කාලගුණ විද්‍යා දෙපාර්තමේන්තුව නිවේදනය කරයි.",
                         isTop: true 
                     },
@@ -119,12 +124,14 @@
                         title: "ඉන්දීය විදේශ ලේකම් අග්‍රාමාත්‍ය ආචාර්ය හරිනි අමරසූරිය සහ විපක්ෂ නායක හමුවෙයි", 
                         source: "readeronenews", 
                         time: "මීට පැයකට පෙර", 
+                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
                         body: "ශ්‍රී ලංකාවේ නිල සංචාරයක නිරත ඉන්දීය විදේශ ලේකම්වරයා අද දිනයේ රාජ්‍ය තාන්ත්‍රික හමු කිහිපයකට එක්විය."
                     },
                     { 
                         title: "පාර්ලිමේන්තුවේ අද පැවැත්වෙන විශේෂ සාකච්ඡා සහ ඉදිරිපත් වන පනත් කෙටුම්පත්", 
                         source: "readeronenews", 
                         time: "මීට පැය 2කට පෙර", 
+                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
                         body: "නව පනත් කෙටුම්පත් කිහිපයක් පිළිබඳව අද දිනයේ පාර්ලිමේන්තුවේදී විශේෂ විවාදයක් පැවැත්වීමට නියමිතව ඇත."
                     }
                 ],
@@ -158,6 +165,7 @@
                         title: "🔴 [Hot News] நாட்டின் பல பகுதிகளில் பலத்த மழை மற்றும் காற்று அதிகரிக்கும் - வானிலை சிவப்பு எச்சரிக்கை", 
                         source: "readeronenews Special", 
                         time: "சில வினாடிகளுக்கு முன்", 
+                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
                         body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் மணிக்கு 50-60 கி.மீ வரை அதிகரிக்கக்கூடும் என வளிமண்டலவியல் திணைக்களம் எச்சரித்துள்ளது.",
                         isTop: true 
                     },
@@ -165,12 +173,14 @@
                         title: "இந்திய வெளியுறவுச் செயலாளர் பிரதமர் கலாநிதி ஹரிணி அமரசூரிய மற்றும் எதிர்க்கட்சித் தலைவரை சந்தித்தார்", 
                         source: "readeronenews", 
                         time: "1 மணி நேரத்திற்கு முன்", 
+                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
                         body: "இலங்கைக்கு உத்தியோகபூர்வ விஜயம் மேற்கொண்டுள்ள இந்திய வெளியுறவுச் செயலாளர் இன்று பல முக்கிய சந்திப்புகளில் ஈடுபட்டார்."
                     },
                     { 
                         title: "பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள் மற்றும் தீர்மானங்கள்", 
                         source: "readeronenews", 
                         time: "2 மணி நேரத்திற்கு முன்", 
+                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
                         body: "இன்று பாராளுமன்றத்தில் பல புதிய சட்டமூலங்கள் தொடர்பில் விவாதங்கள் நடைபெறவுள்ளன."
                     }
                 ],
@@ -204,6 +214,7 @@
                         title: "🔴 [Hot News] Red alert issued: Heavy rain and gusty winds predicted across several island regions", 
                         source: "readeronenews Special", 
                         time: "Just now", 
+                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
                         body: "Wind speeds may increase up to 50-60 kmph across the island and surrounding sea areas, according to the Department of Meteorology.",
                         isTop: true 
                     },
@@ -211,12 +222,14 @@
                         title: "Indian Foreign Secretary Vikram Misri Meets Prime Minister Dr. Harini Amarasuriya & Opposition Leader", 
                         source: "readeronenews", 
                         time: "1 hour ago", 
+                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
                         body: "Indian Foreign Secretary engaged in high-level diplomatic meetings in Colombo today."
                     },
                     { 
                         title: "Key Debates and Parliament Proceedings Scheduled for Today", 
                         source: "readeronenews", 
                         time: "2 hours ago", 
+                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
                         body: "Several important bills and parliamentary discussions are scheduled for today's session."
                     }
                 ],
@@ -259,13 +272,20 @@
 
             currentLangList = translations[lang].newsList;
 
-            // Render News Cards
+            // Render News Cards with Auto-Images
             const newsContainer = document.getElementById('news-container');
             newsContainer.innerHTML = '';
             translations[lang].newsList.forEach((news, idx) => {
                 const borderStyle = news.isTop ? 'border-red-500 bg-red-950/20' : 'border-transparent hover:border-blue-500';
+                
+                // Image HTML Auto-Loader
+                const imageHtml = news.image 
+                    ? `<img src="${news.image}" alt="News Image" class="w-full h-48 object-cover rounded-md mb-3">` 
+                    : '';
+
                 newsContainer.innerHTML += `
                     <div class="card border ${borderStyle} transition p-4">
+                        ${imageHtml}
                         <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold ${news.isTop ? 'text-red-300 hover:text-red-200' : 'text-blue-200 hover:text-white'} block mb-2 w-full">${news.title}</button>
                         <div class="flex justify-between items-center text-xs text-gray-400">
                             <span class="${news.isTop ? 'bg-red-700 text-white' : 'bg-blue-900/60 text-blue-300'} px-2 py-0.5 rounded font-bold">${news.source}</span>
@@ -283,6 +303,15 @@
             document.getElementById('modalSource').innerText = item.source;
             document.getElementById('modalTime').innerText = item.time;
             document.getElementById('modalBody').innerText = item.body;
+            
+            const modalImg = document.getElementById('modalImage');
+            if (item.image) {
+                modalImg.src = item.image;
+                modalImg.classList.remove('hidden');
+            } else {
+                modalImg.classList.add('hidden');
+            }
+
             document.getElementById('newsModal').classList.remove('hidden');
         }
 
