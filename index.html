@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>readeronenews | Daily Sri Lanka News & Live Updates</title>
+    <title>readeronenews | Live News Feed</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -18,9 +18,9 @@
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-bold tracking-wider text-blue-400">readeronenews</h1>
             <div class="space-x-2">
-                <button onclick="changeLang('si')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
-                <button onclick="changeLang('ta')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">தமிழ்</button>
-                <button onclick="changeLang('en')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">English</button>
+                <button onclick="fetchLiveNews('si')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
+                <button onclick="fetchLiveNews('ta')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">தமிழ்</button>
+                <button onclick="fetchLiveNews('en')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">English</button>
             </div>
         </div>
     </header>
@@ -29,24 +29,26 @@
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Top Media Feed)</h2>
+            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 සජීවී පුවත් ප්‍රවාහය (Live News Feed)</h2>
             
-            <!-- Ordered News Feed Container -->
+            <!-- Real Live News Container -->
             <div id="news-container" class="space-y-4">
-                <!-- Media News Feed dynamically generated via JS -->
+                <div class="text-center py-8 text-gray-400">
+                    <p class="animate-pulse">පුවත්පත් අඩවිවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Live News...)</p>
+                </div>
             </div>
 
             <!-- Parliament Live Section -->
-            <h2 id="title-parliament" class="text-xl font-bold my-4 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
+            <h2 id="title-parliament" class="text-xl font-bold my-6 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
             <div class="card aspect-video">
                 <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/live_stream?channel=UCparliament" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <!-- Quick Access News Links (Moved Below Parliament) -->
+            <!-- Quick Access Links Below -->
             <div class="card mt-6">
                 <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල වෙබ් අඩවි:</h3>
                 <div class="flex flex-wrap gap-2 text-xs text-blue-200">
-                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700 border border-blue-800">Ada Derana Official ↗</a>
+                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700 border border-blue-800">Ada Derana ↗</a>
                     <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Hiru News ↗</a>
                     <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Lankadeepa ↗</a>
                     <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Maubima ↗</a>
@@ -61,28 +63,23 @@
 
         <!-- Sidebar Section -->
         <div>
-            <!-- Cartoon of the Day -->
+            <!-- Cartoon -->
             <div class="card">
-                <h3 id="title-cartoon" class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
+                <h3 class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
                 <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
-                    <p id="cartoon-desc" class="text-xs text-gray-400">Daily Newspaper Cartoon Auto-Fetcher</p>
+                    <p class="text-xs text-gray-400">Daily Newspaper Cartoon Auto-Fetcher</p>
                 </div>
             </div>
 
-            <!-- Political Updates Column -->
+            <!-- Political Statements -->
             <div class="card">
-                <h3 id="title-politics" class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
-                <ul class="text-sm space-y-2 text-blue-200" id="politics-list">
-                    <!-- Politics List -->
+                <h3 class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
+                <ul class="text-sm space-y-2 text-blue-200">
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක ↗</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස ↗</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ ↗</a></li>
+                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක ↗</a></li>
                 </ul>
-            </div>
-
-            <!-- Sports & Public Services -->
-            <div class="card">
-                <h3 id="title-services" class="text-lg font-bold text-blue-300 mb-2">🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා</h3>
-                <div class="text-xs space-y-2" id="services-list">
-                    <!-- Services -->
-                </div>
             </div>
         </div>
 
@@ -93,224 +90,112 @@
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
             <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2 py-0.5 rounded font-bold"></span>
-            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3">
+            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
             <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
-            <div class="mt-4 pt-3 border-t border-slate-700 flex justify-between items-center">
-                <span id="modalTime" class="text-xs text-gray-400"></span>
-            </div>
+            <a id="modalLink" href="" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded text-xs font-bold hover:bg-blue-500">සම්පූර්ණ පුවත අදාල වෙබ් අඩවියෙන් කියවන්න ↗</a>
         </div>
     </div>
 
-    <!-- Language & Ordered Feed Script -->
+    <!-- Live RSS Fetching Script -->
     <script>
-        const translations = {
-            si: {
-                newsTitle: "🔥 ප්‍රධාන මාධ්‍ය ජාලයන්හි පුවත් (Media Feed)",
-                quickLinksTitle: "📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල වෙබ් අඩවි:",
-                newsList: [
-                    { 
-                        source: "Ada Derana", 
-                        title: "🔴 [Ada Derana] දිවයිනේ ප්‍රදේශ කිහිපයකට තද වැසි සහ සුළං තත්ත්වයේ වැඩිවීමක් - කාලගුණයෙන් රතු නිවේදනයක්", 
-                        time: "මීට තත්පර කිහිපයකට පෙර", 
-                        image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80",
-                        body: "දිවයින හරහා සහ දිවයින වටා වන මුහුදු ප්‍රදේශවල සුළඟේ වේගය පැයට කිලෝමීටර් 50-60 දක්වා වැඩිවිය හැකි බව කාලගුණ විද්‍යා දෙපාර්තමේන්තුව කියයි."
-                    },
-                    { 
-                        source: "Hiru News", 
-                        title: "🔴 [Hiru News] පාර්ලිමේන්තුවේ අද පැවැත්වෙන විශේෂ සාකච්ඡා සහ ඉදිරිපත් වන පනත් කෙටුම්පත්", 
-                        time: "මීට පැයකට පෙර", 
-                        image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80",
-                        body: "නව පනත් කෙටුම්පත් කිහිපයක් පිළිබඳව අද දිනයේ පාර්ලිමේන්තුවේදී විශේෂ විවාදයක් පැවැත්වීමට නියමිතව ඇත."
-                    },
-                    { 
-                        source: "Lankadeepa", 
-                        title: "🔴 [Lankadeepa] තේ සහ පොල් වගාවන් ආරක්ෂා කරගැනීමට විශේෂ රජයේ වැඩපිළිවෙළක්", 
-                        time: "මීට පැය 2කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80",
-                        body: "දේශීය කෘෂිකර්මාන්තය නැංවීම සඳහා අලුත්ම මුලපිරීමක් අද දින ආරම්භ විය."
-                    },
-                    { 
-                        source: "Maubima", 
-                        title: "🔴 [Maubima] ඉන්ධන සහ විදුලි ගාස්තු සංශෝධනය සම්බන්ධයෙන් විශේෂ නිවේදනයක්", 
-                        time: "මීට පැය 3කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-                        body: "මහජන උපයෝගිතා කොමිෂන් සභාව විසින් ඉදිරි කාලසීමාව සඳහා වන සංශෝධන සලකා බලයි."
-                    },
-                    { 
-                        source: "Divaina", 
-                        title: "🔴 [Divaina] උඩරට දුම්රිය මාර්ගයේ ගමනාගමන කටයුතු යථා තත්ත්වයට", 
-                        time: "මීට පැය 4කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80",
-                        body: "පැවති අයහපත් කාලගුණය හේතුවෙන් බාධා පැමිණි දුම්රිය ධාවනය නැවත සාමාන්‍ය පරිදි සිදුවේ."
-                    },
-                    { 
-                        source: "Dinamina", 
-                        title: "🔴 [Dinamina] සෞඛ්‍ය ක්ෂේත්‍රයේ නව ව්‍යාපෘති කිහිපයක් සුවසෙවන අමාත්‍යාංශයෙන්", 
-                        time: "මීට පැය 5කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80",
-                        body: "ජනතාවට ගුණාත්මක සෞඛ්‍ය සේවාවක් සපයා දීමට රෝහල් පද්ධතිය නවීකරණය කෙරේ."
-                    },
-                    { 
-                        source: "Weerakesari", 
-                        title: "🔴 [Weerakesari] වතුකරයේ ජනතාවගේ නිවාස ව්‍යාපෘති සඳහා නව පියවරක්", 
-                        time: "මීට පැය 6කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-                        body: "වතු නිවාස සංවර්ධන අධිකාරිය මගින් ක්‍රියාත්මක ව්‍යාපෘති වේගවත් කිරීමට තීරණය කර ඇත."
-                    },
-                    { 
-                        source: "The Island", 
-                        title: "🔴 [The Island] Central Bank highlights stable financial growth indicators", 
-                        time: "මීට පැය 7කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
-                        body: "Economic updates from the Central Bank show promising progress in key sectors."
-                    },
-                    { 
-                        source: "Daily Mirror", 
-                        title: "🔴 [Daily Mirror] Diplomatic talks enhance regional trade and cooperation", 
-                        time: "මීට පැය 8කට පෙර", 
-                        image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
-                        body: "Senior officials discuss strategic ties and trade expansions across the region."
-                    }
-                ],
-                parliamentTitle: "🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)",
-                cartoonTitle: "🎨 අද කාටූනය",
-                cartoonDesc: "අද දින පුවත්පත් කාටූනය",
-                politicsTitle: "🗣️ දේශපාලඥයින් අද කී කතා",
-                politicsList: `
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">රනිල් වික්‍රමසිංහ | චන්ද්‍රිකා බණ්ඩාරනායක ↗</a></li>
-                `,
-                servicesTitle: "🏏 ක්‍රිකට් සහ 🏛️ ඔබට ලැබෙන සේවා",
-                servicesList: `
-                    <p><strong>ක්‍රීඩා:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා ක්‍රිකට් ↗</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC ↗</a></p>
-                    <hr class="border-gray-700 my-1">
-                    <p class="space-y-1"><strong>රජයේ සේවා:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">විභාග දෙපාර්තමේන්තුව ↗</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">ශ්‍රී ලංකා පොලීසිය ↗</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">අස්වැසුම ලේකම් කාර්යාලය ↗</a>
-                    </p>
-                `
-            },
-            ta: {
-                newsTitle: "🔥 முக்கிய ஊடகங்களின் செய்திகள் (Media Feed)",
-                quickLinksTitle: "📰 முக்கிய செய்தித்தாள்கள் மற்றும் ஊடகங்கள்:",
-                newsList: [
-                    { source: "Ada Derana", title: "🔴 [Ada Derana] நாட்டின் பல பகுதிகளில் பலத்த மழை - வானிலை எச்சரிக்கை", time: "சில வினாடிகளுக்கு முன்", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80", body: "நாட்டைச் சூழவுள்ள கடற்பகுதிகளில் காற்றின் வேகம் அதிகரிக்கக்கூடும்." },
-                    { source: "Hiru News", title: "🔴 [Hiru News] பாராளுமன்றத்தில் இன்று நடைபெறும் விசேட விவாதங்கள்", time: "1 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80", body: "இன்று பாராளுமன்றத்தில் புதிய சட்டமூலங்கள் விவாதிக்கப்படவுள்ளன." },
-                    { source: "Lankadeepa", title: "🔴 [Lankadeepa] விவசாய மேம்பாட்டிற்கான புதிய திட்டங்கள் ஆரம்பம்", time: "2 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80", body: "விவசாயத் துறையை மேம்படுத்துவதற்காக புதிய திட்டங்கள் அறிமுகப்படுத்தப்பட்டுள்ளன." },
-                    { source: "Maubima", title: "🔴 [Maubima] எரிபொருள் மற்றும் மின்கட்டண திருத்தங்கள் பற்றிய அறிவிப்பு", time: "3 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "பொது பயன்பாடுகள் ஆணைக்குழு புதிய திருத்தங்களை பரிசீலிக்கிறது." },
-                    { source: "Divaina", title: "🔴 [Divaina] மலைநாட்டு ரயில் சேவைகள் வழமைக்கு திரும்பின", time: "4 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "தடைப்பட்ட ரயில் சேவைகள் மீண்டும் ஆரம்பமாகியுள்ளன." },
-                    { source: "Dinamina", title: "🔴 [Dinamina] சுகாதாரத் துறையில் புதிய அபிவிருத்தித் திட்டங்கள்", time: "5 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", body: "மருத்துவமனைகளை நவீனமயமாக்க நடவடிக்கை எடுக்கப்பட்டுள்ளது." },
-                    { source: "Weerakesari", title: "🔴 [Weerakesari] தோட்டப்புற வீடமைப்பு திட்டங்களுக்கு புதிய நிதியுதவி", time: "6 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "வீடமைப்பு திட்டங்களை விரைவுபடுத்த தீர்மானிக்கப்பட்டுள்ளது." },
-                    { source: "The Island", title: "🔴 [The Island] Central Bank highlights economic indicators", time: "7 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", body: "Economic progress remains steady according to official releases." },
-                    { source: "Daily Mirror", title: "🔴 [Daily Mirror] Diplomatic talks enhance trade ties", time: "8 மணி நேரத்திற்கு முன்", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", body: "Discussions focused on trade cooperation and regional ties." }
-                ],
-                parliamentTitle: "🏛️ இலங்கை பாராளுமன்றம் (நேரலை)",
-                cartoonTitle: "🎨 இன்றைய கார்ட்டூன்",
-                cartoonDesc: "இன்றைய செய்தித்தாளின் கார்ட்டூன்",
-                politicsTitle: "🗣️ அரசியல்வாதிகளின் இன்றைய உரைகள்",
-                politicsList: `
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">அனுர குமார திசாநாயக்க ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">சஜித் பிரேமதாச ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">நாமல் ராஜபக்ஷ ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">திலித் ஜயவீர | பிமல் ரத்நாயக்க ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">ரணில் விக்கிரமசிங்க | சந்திரிகா பண்டாரநாயக்க ↗</a></li>
-                `,
-                servicesTitle: "🏏 கிரிக்கெட் மற்றும் 🏛️ அரசு சேவைகள்",
-                servicesList: `
-                    <p><strong>விளையாட்டு:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை கிரிக்கெட் ↗</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC ↗</a></p>
-                    <hr class="border-gray-700 my-1">
-                    <p class="space-y-1"><strong>அரசு சேவைகள்:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">பரீட்சைத் திணைக்களம் ↗</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">இலங்கை பொலிஸ் ↗</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">அஸ்வசும செயலகம் ↗</a>
-                    </p>
-                `
-            },
-            en: {
-                newsTitle: "🔥 Top Media Feed (In Order)",
-                quickLinksTitle: "📰 Major Newspapers & Media Networks:",
-                newsList: [
-                    { source: "Ada Derana", title: "🔴 [Ada Derana] Red alert issued: Heavy rain and gusty winds predicted", time: "Just now", image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80", body: "Wind speeds may increase up to 50-60 kmph across the island." },
-                    { source: "Hiru News", title: "🔴 [Hiru News] Key Debates and Parliament Proceedings Scheduled for Today", time: "1 hour ago", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80", body: "Several important bills scheduled for discussion." },
-                    { source: "Lankadeepa", title: "🔴 [Lankadeepa] Special government plan to support tea and coconut plantation sectors", time: "2 hours ago", image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80", body: "Initiatives launched to boost agricultural output." },
-                    { source: "Maubima", title: "🔴 [Maubima] Announcement on fuel and electricity tariff reviews", time: "3 hours ago", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80", body: "PUCSL reviewing new tariff guidelines." },
-                    { source: "Divaina", title: "🔴 [Divaina] Main railway lines restored after weather interruptions", time: "4 hours ago", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80", body: "Train services resume normal operation." },
-                    { source: "Dinamina", title: "🔴 [Dinamina] Health Ministry introduces upgraded facilities for public hospitals", time: "5 hours ago", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", body: "Modernization project aims to improve health care accessibility." },
-                    { source: "Weerakesari", title: "🔴 [Weerakesari] New housing developments announced for plantation communities", time: "6 hours ago", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", body: "Projects accelerated under plantation housing initiative." },
-                    { source: "The Island", title: "🔴 [The Island] Central Bank highlights stable financial growth indicators", time: "7 hours ago", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", body: "Reports show positive signs across key economic areas." },
-                    { source: "Daily Mirror", title: "🔴 [Daily Mirror] Diplomatic talks enhance regional trade and cooperation", time: "8 hours ago", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", body: "Bilateral trade discussions focused on economic expansion." }
-                ],
-                parliamentTitle: "🏛️ Parliament of Sri Lanka (Live Stream)",
-                cartoonTitle: "🎨 Today's Cartoon",
-                cartoonDesc: "Daily Newspaper Cartoon",
-                politicsTitle: "🗣️ Today's Political Statements",
-                politicsList: `
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Anura Kumara Dissanayake ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Sajith Premadasa ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Namal Rajapaksa ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Dilith Jayaweera | Bimal Rathnayake ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">Ranil Wickremesinghe | Chandrika Bandaranaike ↗</a></li>
-                `,
-                servicesTitle: "🏏 Cricket & 🏛️ Public Services",
-                servicesList: `
-                    <p><strong>Sports:</strong> <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Cricket ↗</a> | <a href="https://www.icc-cricket.com" target="_blank" class="text-blue-400 hover:underline">ICC ↗</a></p>
-                    <hr class="border-gray-700 my-1">
-                    <p class="space-y-1"><strong>Public Services:</strong><br>
-                        • <a href="https://doenets.lk" target="_blank" class="text-blue-400 hover:underline">Department of Examinations ↗</a><br>
-                        • <a href="https://police.lk" target="_blank" class="text-blue-400 hover:underline">Sri Lanka Police ↗</a><br>
-                        • <a href="https://aswesuma.gov.lk" target="_blank" class="text-blue-400 hover:underline">Aswesuma Welfare Secretariat ↗</a>
-                    </p>
-                `
-            }
+        // RSS Feeds from Major News Sites
+        const rssFeeds = {
+            si: [
+                { name: "Ada Derana", url: "https://sinhala.adaderana.lk/rss.php" },
+                { name: "Hiru News", url: "https://www.hirunews.lk/rss/sinhala.xml" },
+                { name: "BBC Sinhala", url: "https://www.bbc.com/sinhala/index.xml" }
+            ],
+            en: [
+                { name: "Ada Derana English", url: "http://www.adaderana.lk/rss.php" },
+                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" }
+            ],
+            ta: [
+                { name: "Virakesari", url: "https://www.virakesari.lk/feed" }
+            ]
         };
 
-        let currentLangList = [];
+        let activeNewsList = [];
 
-        function changeLang(lang) {
-            document.getElementById('title-news').innerText = translations[lang].newsTitle;
-            document.getElementById('quick-links-title').innerText = translations[lang].quickLinksTitle;
-            document.getElementById('title-parliament').innerText = translations[lang].parliamentTitle;
-            document.getElementById('title-cartoon').innerText = translations[lang].cartoonTitle;
-            document.getElementById('cartoon-desc').innerText = translations[lang].cartoonDesc;
-            document.getElementById('title-politics').innerText = translations[lang].politicsTitle;
-            document.getElementById('politics-list').innerHTML = translations[lang].politicsList;
-            document.getElementById('title-services').innerText = translations[lang].servicesTitle;
-            document.getElementById('services-list').innerHTML = translations[lang].servicesList;
+        async function fetchLiveNews(lang = 'si') {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">සජීවී පුවත් ලබාගනිමින් පවතී... (Fetching Live RSS News...)</p></div>';
+            
+            activeNewsList = [];
+            const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
 
-            currentLangList = translations[lang].newsList;
+            for (let feed of selectedFeeds) {
+                try {
+                    // RSS to JSON API
+                    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`);
+                    const data = await response.json();
 
-            // Render All Ordered News Cards with Images
+                    if (data.status === 'ok' && data.items) {
+                        data.items.forEach(item => {
+                            // Extract image from enclosure, thumbnail or content
+                            let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+                            
+                            // Fallback image extraction from html description
+                            if (!imgUrl && item.description) {
+                                const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+                                if (imgMatch) imgUrl = imgMatch[1];
+                            }
+
+                            activeNewsList.push({
+                                source: feed.name,
+                                title: item.title,
+                                link: item.link,
+                                pubDate: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                                image: imgUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+                                description: item.description.replace(/<[^>]*>?/gm, '').substring(0, 200) + '...'
+                            });
+                        });
+                    }
+                } catch (e) {
+                    console.error("RSS Fetch Error: ", e);
+                }
+            }
+
+            renderNews();
+        }
+
+        function renderNews() {
             const newsContainer = document.getElementById('news-container');
             newsContainer.innerHTML = '';
-            translations[lang].newsList.forEach((news, idx) => {
+
+            if (activeNewsList.length === 0) {
+                newsContainer.innerHTML = '<p class="text-center text-gray-400 py-4">පුවත් ලබාගැනීමට නොහැකි විය. කරුණාකර මොහොතකින් නැවත උත්සාහ කරන්න.</p>';
+                return;
+            }
+
+            activeNewsList.forEach((news, idx) => {
                 newsContainer.innerHTML += `
                     <div class="card border border-slate-700 hover:border-blue-500 transition p-4">
-                        <img src="${news.image}" alt="${news.source} News Image" class="w-full h-52 object-cover rounded-md mb-3">
+                        <img src="${news.image}" alt="${news.source}" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
                         <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold text-blue-200 hover:text-white block mb-2 w-full leading-snug">${news.title}</button>
                         <div class="flex justify-between items-center text-xs text-gray-400 mt-2">
                             <span class="bg-blue-900/80 text-blue-300 px-2.5 py-1 rounded font-bold">${news.source}</span>
-                            <span>${news.time}</span>
+                            <span>${news.pubDate}</span>
                         </div>
                     </div>
                 `;
             });
         }
 
-        // Modal Functions
         function openNewsModal(index) {
-            const item = currentLangList[index];
+            const item = activeNewsList[index];
             document.getElementById('modalTitle').innerText = item.title;
             document.getElementById('modalSource').innerText = item.source;
-            document.getElementById('modalTime').innerText = item.time;
-            document.getElementById('modalBody').innerText = item.body;
-            
+            document.getElementById('modalBody').innerText = item.description;
+            document.getElementById('modalLink').href = item.link;
+
             const modalImg = document.getElementById('modalImage');
-            modalImg.src = item.image;
+            if (item.image) {
+                modalImg.src = item.image;
+                modalImg.classList.remove('hidden');
+            } else {
+                modalImg.classList.add('hidden');
+            }
 
             document.getElementById('newsModal').classList.remove('hidden');
         }
@@ -319,8 +204,8 @@
             document.getElementById('newsModal').classList.add('hidden');
         }
 
-        // Default Load
-        changeLang('si');
+        // Auto load news on page start
+        fetchLiveNews('si');
     </script>
 
 </body>
