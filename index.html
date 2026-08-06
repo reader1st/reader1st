@@ -29,12 +29,12 @@
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 සජීවී පුවත් ප්‍රවාහය (Live News Feed)</h2>
+            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන සජීවී පුවත් (Top Live News)</h2>
             
-            <!-- Real Live News Container -->
+            <!-- Real Live News Feed Container -->
             <div id="news-container" class="space-y-4">
                 <div class="text-center py-8 text-gray-400">
-                    <p class="animate-pulse">පුවත්පත් අඩවිවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Live News...)</p>
+                    <p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Loading Live News...)</p>
                 </div>
             </div>
 
@@ -42,22 +42,6 @@
             <h2 id="title-parliament" class="text-xl font-bold my-6 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
             <div class="card aspect-video">
                 <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/live_stream?channel=UCparliament" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <!-- Quick Access Links Below -->
-            <div class="card mt-6">
-                <h3 id="quick-links-title" class="text-md font-bold text-blue-300 mb-2">📰 ප්‍රධාන පුවත්පත් සහ මාධ්‍ය ජාල වෙබ් අඩවි:</h3>
-                <div class="flex flex-wrap gap-2 text-xs text-blue-200">
-                    <a href="https://sinhala.adaderana.lk" target="_blank" class="bg-blue-900/50 px-2.5 py-1 rounded hover:bg-blue-700 border border-blue-800">Ada Derana ↗</a>
-                    <a href="https://www.hirunews.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Hiru News ↗</a>
-                    <a href="https://www.lankadeepa.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Lankadeepa ↗</a>
-                    <a href="https://maubima.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Maubima ↗</a>
-                    <a href="https://divaina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Divaina ↗</a>
-                    <a href="https://dinamina.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Dinamina ↗</a>
-                    <a href="https://www.virakesari.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Weerakesari ↗</a>
-                    <a href="https://island.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">The Island ↗</a>
-                    <a href="https://www.dailymirror.lk" target="_blank" class="bg-blue-900/50 px-2 py-1 rounded hover:bg-blue-700 border border-blue-800">Daily Mirror ↗</a>
-                </div>
             </div>
         </div>
 
@@ -99,7 +83,6 @@
 
     <!-- Live RSS Fetching Script -->
     <script>
-        // RSS Feeds from Major News Sites
         const rssFeeds = {
             si: [
                 { name: "Ada Derana", url: "https://sinhala.adaderana.lk/rss.php" },
@@ -126,16 +109,13 @@
 
             for (let feed of selectedFeeds) {
                 try {
-                    // RSS to JSON API
                     const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`);
                     const data = await response.json();
 
                     if (data.status === 'ok' && data.items) {
                         data.items.forEach(item => {
-                            // Extract image from enclosure, thumbnail or content
                             let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
                             
-                            // Fallback image extraction from html description
                             if (!imgUrl && item.description) {
                                 const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
                                 if (imgMatch) imgUrl = imgMatch[1];
