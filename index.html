@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>readeronenews | Live News Feed</title>
+    <title>readeronenews | Top Trending News Sri Lanka</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -29,12 +29,12 @@
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 ප්‍රධාන සජීවී පුවත් (Top Live News)</h2>
+            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)</h2>
             
-            <!-- Real Live News Feed Container -->
+            <!-- Dynamic Real News Feed -->
             <div id="news-container" class="space-y-4">
                 <div class="text-center py-8 text-gray-400">
-                    <p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Loading Live News...)</p>
+                    <p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Top Trending News...)</p>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
 
         <!-- Sidebar Section -->
         <div>
-            <!-- Cartoon -->
+            <!-- Cartoon Box -->
             <div class="card">
                 <h3 class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
                 <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
@@ -55,34 +55,34 @@
                 </div>
             </div>
 
-            <!-- Political Statements -->
+            <!-- Political Updates -->
             <div class="card">
                 <h3 class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
                 <ul class="text-sm space-y-2 text-blue-200">
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">අනුර කුමාර දිසානායක ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">සජිත් ප්‍රේමදාස ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">නාමල් රාජපක්ෂ ↗</a></li>
-                    <li>🔹 <a href="https://facebook.com" target="_blank" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක ↗</a></li>
+                    <li>🔹 <a href="#" onclick="alert('දේශපාලන වීඩියෝව සූදානම් වෙමින් පවතී.'); return false;" class="hover:underline">අනුර කුමාර දිසානායක</a></li>
+                    <li>🔹 <a href="#" onclick="alert('දේශපාලන වීඩියෝව සූදානම් වෙමින් පවතී.'); return false;" class="hover:underline">සජිත් ප්‍රේමදාස</a></li>
+                    <li>🔹 <a href="#" onclick="alert('දේශපාලන වීඩියෝව සූදානම් වෙමින් පවතී.'); return false;" class="hover:underline">නාමල් රාජපක්ෂ</a></li>
+                    <li>🔹 <a href="#" onclick="alert('දේශපාලන වීඩියෝව සූදානම් වෙමින් පවතී.'); return false;" class="hover:underline">දිලිත් ජයවීර | බිමල් රත්නායක</a></li>
                 </ul>
             </div>
         </div>
 
     </div>
 
-    <!-- Quick Read Modal -->
+    <!-- Quick Read Modal (Internal Viewer - No redirection to external sites) -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
-            <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2 py-0.5 rounded font-bold"></span>
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ වසන්න (Close)</button>
+            <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2.5 py-1 rounded font-bold uppercase tracking-wide"></span>
             <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
-            <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2"></h3>
+            <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2 leading-snug"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
-            <a id="modalLink" href="" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded text-xs font-bold hover:bg-blue-500">සම්පූර්ණ පුවත අදාල වෙබ් අඩවියෙන් කියවන්න ↗</a>
         </div>
     </div>
 
-    <!-- Live RSS Fetching Script -->
+    <!-- Multi-Source RSS News Fetcher Script -->
     <script>
+        // Media Outlets RSS Sources
         const rssFeeds = {
             si: [
                 { name: "Ada Derana", url: "https://sinhala.adaderana.lk/rss.php" },
@@ -91,7 +91,8 @@
             ],
             en: [
                 { name: "Ada Derana English", url: "http://www.adaderana.lk/rss.php" },
-                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" }
+                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" },
+                { name: "The Island", url: "https://island.lk/feed/" }
             ],
             ta: [
                 { name: "Virakesari", url: "https://www.virakesari.lk/feed" }
@@ -102,7 +103,7 @@
 
         async function fetchLiveNews(lang = 'si') {
             const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">සජීවී පුවත් ලබාගනිමින් පවතී... (Fetching Live RSS News...)</p></div>';
+            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Top Trending News...)</p></div>';
             
             activeNewsList = [];
             const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
@@ -121,13 +122,15 @@
                                 if (imgMatch) imgUrl = imgMatch[1];
                             }
 
+                            // Clean description text
+                            let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '').trim() : 'විස්තර සහිත පුවත කියවන්න.';
+
                             activeNewsList.push({
                                 source: feed.name,
                                 title: item.title,
-                                link: item.link,
                                 pubDate: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                                 image: imgUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
-                                description: item.description.replace(/<[^>]*>?/gm, '').substring(0, 200) + '...'
+                                description: cleanDesc
                             });
                         });
                     }
@@ -150,9 +153,9 @@
 
             activeNewsList.forEach((news, idx) => {
                 newsContainer.innerHTML += `
-                    <div class="card border border-slate-700 hover:border-blue-500 transition p-4">
+                    <div class="card border border-slate-700 hover:border-blue-500 transition p-4 cursor-pointer" onclick="openNewsModal(${idx})">
                         <img src="${news.image}" alt="${news.source}" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
-                        <button onclick="openNewsModal(${idx})" class="text-left text-lg font-bold text-blue-200 hover:text-white block mb-2 w-full leading-snug">${news.title}</button>
+                        <h3 class="text-lg font-bold text-blue-200 hover:text-white mb-2 leading-snug">${news.title}</h3>
                         <div class="flex justify-between items-center text-xs text-gray-400 mt-2">
                             <span class="bg-blue-900/80 text-blue-300 px-2.5 py-1 rounded font-bold">${news.source}</span>
                             <span>${news.pubDate}</span>
@@ -167,7 +170,6 @@
             document.getElementById('modalTitle').innerText = item.title;
             document.getElementById('modalSource').innerText = item.source;
             document.getElementById('modalBody').innerText = item.description;
-            document.getElementById('modalLink').href = item.link;
 
             const modalImg = document.getElementById('modalImage');
             if (item.image) {
