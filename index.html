@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>readeronenews | Top Trending News Sri Lanka</title>
+    <title>readeronenews | Top News Categories</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0b132b; color: #ffffff; }
         .card { background-color: #1c2541; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+        /* Scrollbar styling for categories on mobile */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="font-sans antialiased">
 
-    <!-- Header & Language Switcher -->
-    <header class="bg-[#1c2541] p-4 shadow-lg border-b border-blue-800">
+    <!-- Main Header -->
+    <header class="bg-[#1c2541] p-4 shadow-lg border-b border-blue-900">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-bold tracking-wider text-blue-400">readeronenews</h1>
             <div class="space-x-2">
-                <button onclick="fetchLiveNews('si')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
-                <button onclick="fetchLiveNews('ta')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">தமிழ்</button>
-                <button onclick="fetchLiveNews('en')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">English</button>
+                <button onclick="changeLanguage('si')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
+                <button onclick="changeLanguage('ta')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">தமிழ்</button>
+                <button onclick="changeLanguage('en')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">English</button>
             </div>
         </div>
     </header>
+
+    <!-- Categories Navigation Bar (Matching Image Style) -->
+    <nav class="bg-[#131b33] border-b border-blue-800/60 sticky top-0 z-40 shadow-md">
+        <div class="container mx-auto px-4 py-2.5 flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs md:text-sm font-extrabold uppercase tracking-wider text-gray-300">
+            <button onclick="filterCategory('all')" class="cat-btn bg-blue-600 text-white px-3 py-1.5 rounded transition whitespace-nowrap hover:text-white">සියලුම (ALL)</button>
+            <button onclick="filterCategory('politics')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">POLITICS (දේශපාලන)</button>
+            <button onclick="filterCategory('sports')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">SPORTS (ක්‍රීඩා)</button>
+            <button onclick="filterCategory('world')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">WORLD (විදේශ)</button>
+            <button onclick="filterCategory('education')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">EDUCATION (අධ්‍යාපන)</button>
+            <button onclick="filterCategory('business')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">BUSINESS (ව්‍යාපාර)</button>
+            <button onclick="filterCategory('entertainment')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">ENTERTAINMENT (විනෝදාස්වාද)</button>
+            <button onclick="filterCategory('tech')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">TECH (තාක්ෂණ)</button>
+        </div>
+    </nav>
 
     <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- Main News Column -->
         <div class="md:col-span-2">
-            <h2 id="title-news" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 වැඩිම පිරිසක් නැරඹූ ප්‍රධාන පුවත් (Top Trending News)</h2>
+            <h2 id="category-title" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 සියලුම ප්‍රධාන පුවත් (Top Latest News)</h2>
             
-            <!-- Dynamic Real News Feed -->
+            <!-- Dynamic News Container -->
             <div id="news-container" class="space-y-4">
                 <div class="text-center py-8 text-gray-400">
-                    <p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Top Trending News...)</p>
+                    <p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් පුවත් ලබාගනිමින් පවතී... (Loading News...)</p>
                 </div>
             </div>
 
@@ -55,7 +72,7 @@
                 </div>
             </div>
 
-            <!-- Political Updates -->
+            <!-- Political Statements -->
             <div class="card">
                 <h3 class="text-lg font-bold text-blue-300 mb-2">🗣️ දේශපාලඥයින් අද කී කතා</h3>
                 <ul class="text-sm space-y-2 text-blue-200">
@@ -69,7 +86,7 @@
 
     </div>
 
-    <!-- Quick Read Modal (Internal Viewer - No redirection to external sites) -->
+    <!-- Quick Read Modal (Internal Article Viewer) -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ වසන්න (Close)</button>
@@ -80,9 +97,8 @@
         </div>
     </div>
 
-    <!-- Multi-Source RSS News Fetcher Script -->
+    <!-- Live RSS Multi-Category Fetcher Script -->
     <script>
-        // Media Outlets RSS Sources
         const rssFeeds = {
             si: [
                 { name: "Ada Derana", url: "https://sinhala.adaderana.lk/rss.php" },
@@ -91,8 +107,7 @@
             ],
             en: [
                 { name: "Ada Derana English", url: "http://www.adaderana.lk/rss.php" },
-                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" },
-                { name: "The Island", url: "https://island.lk/feed/" }
+                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" }
             ],
             ta: [
                 { name: "Virakesari", url: "https://www.virakesari.lk/feed" }
@@ -100,10 +115,13 @@
         };
 
         let activeNewsList = [];
+        let currentLanguage = 'si';
+        let currentFilter = 'all';
 
         async function fetchLiveNews(lang = 'si') {
+            currentLanguage = lang;
             const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් අලුත්ම පුවත් ලබාගනිමින් පවතී... (Loading Top Trending News...)</p></div>';
+            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Fetching Category News...)</p></div>';
             
             activeNewsList = [];
             const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
@@ -122,7 +140,6 @@
                                 if (imgMatch) imgUrl = imgMatch[1];
                             }
 
-                            // Clean description text
                             let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '').trim() : 'විස්තර සහිත පුවත කියවන්න.';
 
                             activeNewsList.push({
@@ -130,7 +147,8 @@
                                 title: item.title,
                                 pubDate: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                                 image: imgUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
-                                description: cleanDesc
+                                description: cleanDesc,
+                                categories: item.categories || []
                             });
                         });
                     }
@@ -142,16 +160,63 @@
             renderNews();
         }
 
+        function filterCategory(catKey) {
+            currentFilter = catKey;
+
+            // Highlight Active Category Button
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('hover:text-blue-400', 'hover:bg-slate-800');
+            });
+
+            event.target.classList.add('bg-blue-600', 'text-white');
+
+            // Set Title
+            const titleElement = document.getElementById('category-title');
+            const catNames = {
+                'all': '🔥 සියලුම ප්‍රධාන පුවත් (Top Latest News)',
+                'politics': '🏛️ දේශපාලන පුවත් (Politics)',
+                'sports': '🏏 ක්‍රීඩා පුවත් (Sports)',
+                'world': '🌐 විදේශ පුවත් (World)',
+                'education': '🎓 අධ්‍යාපන පුවත් (Education)',
+                'business': '📈 ව්‍යාපාරික පුවත් (Business)',
+                'entertainment': '🎬 විනෝදාස්වාද පුවත් (Entertainment)',
+                'tech': '💻 තාක්ෂණික පුවත් (Tech)'
+            };
+            titleElement.innerText = catNames[catKey] || '🔥 ප්‍රධාන පුවත්';
+
+            renderNews();
+        }
+
         function renderNews() {
             const newsContainer = document.getElementById('news-container');
             newsContainer.innerHTML = '';
 
-            if (activeNewsList.length === 0) {
-                newsContainer.innerHTML = '<p class="text-center text-gray-400 py-4">පුවත් ලබාගැනීමට නොහැකි විය. කරුණාකර මොහොතකින් නැවත උත්සාහ කරන්න.</p>';
+            let filteredList = activeNewsList;
+
+            if (currentFilter !== 'all') {
+                filteredList = activeNewsList.filter(news => {
+                    const text = (news.title + " " + news.description).toLowerCase();
+                    
+                    // Simple smart keyword matching for RSS feeds
+                    if (currentFilter === 'politics') return text.includes('දේශපාලන') || text.includes('මංත්‍රී') || text.includes('අමාත්‍ය') || text.includes('parliament') || text.includes('politics') || text.includes('මැතිවරණ');
+                    if (currentFilter === 'sports') return text.includes('ක්‍රිකට්') || text.includes('ක්‍රීඩා') || text.includes('sport') || text.includes('cricket') || text.includes('ලීග්');
+                    if (currentFilter === 'world') return text.includes('ලෝක') || text.includes('විදේශ') || text.includes('world') || text.includes('global') || text.includes('ඇමෙරිකා');
+                    if (currentFilter === 'education') return text.includes('පාසල්') || text.includes('විභාග') || text.includes('අධ්‍යාපන') || text.includes('education') || text.includes('ශිෂ්‍ය');
+                    if (currentFilter === 'business') return text.includes('මුදල්') || text.includes('ව්‍යාපාර') || text.includes('බැංකු') || text.includes('business') || text.includes('economy') || text.includes('රූපියල්');
+                    if (currentFilter === 'entertainment') return text.includes('සිනමා') || text.includes('කලා') || text.includes('entertainment') || text.includes('cinema') || text.includes('නළුවා');
+                    if (currentFilter === 'tech') return text.includes('තාක්ෂණ') || text.includes('tech') || text.includes('ai') || text.includes('digital') || text.includes('දුරකථන');
+                    return true;
+                });
+            }
+
+            if (filteredList.length === 0) {
+                newsContainer.innerHTML = `<p class="text-center text-gray-400 py-8 bg-slate-900/50 rounded-lg">මේ මොහොතේ මෙම අංශයට (Category) අදාළ නවතම පුවත් නොමැත. කරුණාකර "සියලුම" (ALL) තෝරන්න.</p>`;
                 return;
             }
 
-            activeNewsList.forEach((news, idx) => {
+            filteredList.forEach((news, idx) => {
                 newsContainer.innerHTML += `
                     <div class="card border border-slate-700 hover:border-blue-500 transition p-4 cursor-pointer" onclick="openNewsModal(${idx})">
                         <img src="${news.image}" alt="${news.source}" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
@@ -163,6 +228,10 @@
                     </div>
                 `;
             });
+        }
+
+        function changeLanguage(lang) {
+            fetchLiveNews(lang);
         }
 
         function openNewsModal(index) {
@@ -186,7 +255,7 @@
             document.getElementById('newsModal').classList.add('hidden');
         }
 
-        // Auto load news on page start
+        // Auto load news on startup
         fetchLiveNews('si');
     </script>
 
