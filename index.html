@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <!-- Categories Navigation Bar (Matching Image Style) -->
+    <!-- Categories Navigation Bar -->
     <nav class="bg-[#131b33] border-b border-blue-800/60 sticky top-0 z-40 shadow-md">
         <div class="container mx-auto px-4 py-2.5 flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs md:text-sm font-extrabold uppercase tracking-wider text-gray-300">
             <button onclick="filterCategory('all')" class="cat-btn bg-blue-600 text-white px-3 py-1.5 rounded transition whitespace-nowrap hover:text-white">සියලුම (ALL)</button>
@@ -90,7 +90,6 @@
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ වසන්න (Close)</button>
-            <span id="modalSource" class="bg-blue-900 text-blue-300 text-xs px-2.5 py-1 rounded font-bold uppercase tracking-wide"></span>
             <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
             <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2 leading-snug"></h3>
             <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
@@ -121,7 +120,7 @@
         async function fetchLiveNews(lang = 'si') {
             currentLanguage = lang;
             const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Fetching Category News...)</p></div>';
+            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Fetching News...)</p></div>';
             
             activeNewsList = [];
             const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
@@ -143,12 +142,10 @@
                             let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '').trim() : 'විස්තර සහිත පුවත කියවන්න.';
 
                             activeNewsList.push({
-                                source: feed.name,
                                 title: item.title,
                                 pubDate: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                                 image: imgUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
-                                description: cleanDesc,
-                                categories: item.categories || []
+                                description: cleanDesc
                             });
                         });
                     }
@@ -163,7 +160,6 @@
         function filterCategory(catKey) {
             currentFilter = catKey;
 
-            // Highlight Active Category Button
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-blue-600', 'text-white');
@@ -172,7 +168,6 @@
 
             event.target.classList.add('bg-blue-600', 'text-white');
 
-            // Set Title
             const titleElement = document.getElementById('category-title');
             const catNames = {
                 'all': '🔥 සියලුම ප්‍රධාන පුවත් (Top Latest News)',
@@ -199,7 +194,6 @@
                 filteredList = activeNewsList.filter(news => {
                     const text = (news.title + " " + news.description).toLowerCase();
                     
-                    // Simple smart keyword matching for RSS feeds
                     if (currentFilter === 'politics') return text.includes('දේශපාලන') || text.includes('මංත්‍රී') || text.includes('අමාත්‍ය') || text.includes('parliament') || text.includes('politics') || text.includes('මැතිවරණ');
                     if (currentFilter === 'sports') return text.includes('ක්‍රිකට්') || text.includes('ක්‍රීඩා') || text.includes('sport') || text.includes('cricket') || text.includes('ලීග්');
                     if (currentFilter === 'world') return text.includes('ලෝක') || text.includes('විදේශ') || text.includes('world') || text.includes('global') || text.includes('ඇමෙරිකා');
@@ -219,10 +213,9 @@
             filteredList.forEach((news, idx) => {
                 newsContainer.innerHTML += `
                     <div class="card border border-slate-700 hover:border-blue-500 transition p-4 cursor-pointer" onclick="openNewsModal(${idx})">
-                        <img src="${news.image}" alt="${news.source}" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
+                        <img src="${news.image}" alt="News Image" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
                         <h3 class="text-lg font-bold text-blue-200 hover:text-white mb-2 leading-snug">${news.title}</h3>
-                        <div class="flex justify-between items-center text-xs text-gray-400 mt-2">
-                            <span class="bg-blue-900/80 text-blue-300 px-2.5 py-1 rounded font-bold">${news.source}</span>
+                        <div class="flex justify-end items-center text-xs text-gray-400 mt-2">
                             <span>${news.pubDate}</span>
                         </div>
                     </div>
@@ -237,7 +230,6 @@
         function openNewsModal(index) {
             const item = activeNewsList[index];
             document.getElementById('modalTitle').innerText = item.title;
-            document.getElementById('modalSource').innerText = item.source;
             document.getElementById('modalBody').innerText = item.description;
 
             const modalImg = document.getElementById('modalImage');
