@@ -12,6 +12,17 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 30s linear infinite; }
+        
+        /* 1 - Rotating Circle Animation */
+        @keyframes spinInnerNumber {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        .rotate-number {
+            display: inline-block;
+            animation: spinInnerNumber 3s linear infinite;
+            transform-style: preserve-3d;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -29,11 +40,13 @@
                 <a href="#" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
             </div>
 
-            <!-- Logo -->
+            <!-- Logo (Larger Text + Rotating Number '1' Inside Circle) -->
             <div class="flex items-center justify-center my-2 md:my-0">
-                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">Reader</span>
-                <span class="bg-[#b91c1c] text-white text-3xl md:text-4xl font-bold rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center mx-2 shadow-inner">1</span>
-                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">NEWS</span>
+                <span class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">Reader</span>
+                <div class="bg-[#b91c1c] text-white text-4xl md:text-6xl font-bold rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-2 shadow-lg overflow-hidden">
+                    <span class="rotate-number">1</span>
+                </div>
+                <span class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">NEWS</span>
             </div>
 
             <!-- Language Buttons -->
@@ -71,13 +84,9 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT GRID (As per image layout) -->
+    <!-- MAIN CONTENT GRID -->
     <main class="container mx-auto p-4 md:p-6">
-        
-        <!-- TOP GRID SECTION -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-6">
-            
-            <!-- Left Large Feature Box (Image Mockup Left) -->
             <div class="lg:col-span-5 flex flex-col gap-4">
                 <div id="main-featured-news" class="bg-white border-2 border-slate-400 p-4 rounded min-h-[320px] shadow-sm flex flex-col justify-between">
                     <div>
@@ -88,13 +97,11 @@
                     <div class="text-xs text-slate-500 mt-4 pt-2 border-t border-slate-200">ඊයේ | පැය 2 කට පෙර</div>
                 </div>
 
-                <!-- Sub feature box -->
                 <div class="bg-white border-2 border-slate-400 p-4 rounded min-h-[90px] shadow-sm">
                     <h3 class="font-bold text-slate-800 text-sm">විශේෂ පුවත් මුඛ්‍යාංග සහ විශේෂාංග ලිපි</h3>
                 </div>
             </div>
 
-            <!-- Right 6 Grid Cards (Image Mockup Right) -->
             <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
                     <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
@@ -123,7 +130,6 @@
             </div>
         </div>
 
-        <!-- BOTTOM GRID SECTION (Image Mockup Bottom 2 Large Boxes) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-white border-2 border-slate-400 rounded p-5 min-h-[220px] shadow-sm">
                 <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-3">ව්‍යාපාරික & මූල්‍ය පුවත්</h3>
