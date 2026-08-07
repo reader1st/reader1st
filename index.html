@@ -3,128 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>readeronenews | Top News Categories</title>
-    <!-- Tailwind CSS -->
+    <title>Reader 1 NEWS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0b132b; color: #ffffff; }
-        .card { background-color: #1c2541; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-        /* Scrollbar styling for categories on mobile */
+        body { background-color: #f8fafc; color: #1e293b; font-family: sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Breaking news animation */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body>
 
-    <!-- Main Header -->
-    <header class="bg-[#1c2541] p-4 shadow-lg border-b border-blue-900">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-3xl font-bold tracking-wider text-blue-400">readeronenews</h1>
-            <div class="space-x-2">
-                <button onclick="changeLanguage('si')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">සිංහල</button>
-                <button onclick="changeLanguage('ta')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">தமிழ்</button>
-                <button onclick="changeLanguage('en')" class="bg-blue-600 px-3 py-1 rounded text-sm hover:bg-blue-500 font-bold">English</button>
+    <!-- Header Section -->
+    <header class="bg-white border-b-2 border-slate-300 relative shadow-sm">
+        <!-- Language Switcher (Top Right Absolute) -->
+        <div class="absolute top-3 right-3 sm:right-6 flex space-x-1 border border-slate-800 p-1 bg-white rounded shadow-sm z-10">
+            <button onclick="changeLanguage('si')" class="bg-blue-700 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-800">සිංහල</button>
+            <button onclick="changeLanguage('ta')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">தமிழ்</button>
+            <button onclick="changeLanguage('en')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">English</button>
+        </div>
+
+        <div class="container mx-auto px-4 pt-6 pb-4 flex flex-col md:flex-row items-center justify-between">
+            <!-- Social Media Icons (Left) -->
+            <div class="flex items-center space-x-3 text-slate-800 text-xl mb-4 md:mb-0">
+                <a href="#" class="hover:text-blue-600"><i class="fa-solid fa-bolt"></i></a>
+                <a href="#" class="hover:text-blue-600"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-red-600"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
             </div>
+
+            <!-- Main Logo (Center) -->
+            <div class="flex items-center justify-center my-2 md:my-0">
+                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">Reader</span>
+                <span class="bg-[#b91c1c] text-white text-3xl md:text-4xl font-bold rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center mx-2 shadow-inner">1</span>
+                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">NEWS</span>
+            </div>
+
+            <!-- Empty div for desktop alignment balance -->
+            <div class="hidden md:block w-32"></div>
         </div>
     </header>
 
-    <!-- Categories Navigation Bar -->
-    <nav class="bg-[#131b33] border-b border-blue-800/60 sticky top-0 z-40 shadow-md">
-        <div class="container mx-auto px-4 py-2.5 flex items-center space-x-2 overflow-x-auto no-scrollbar text-xs md:text-sm font-extrabold uppercase tracking-wider text-gray-300">
-            <button onclick="filterCategory('all')" class="cat-btn bg-blue-600 text-white px-3 py-1.5 rounded transition whitespace-nowrap hover:text-white">සියලුම (ALL)</button>
-            <button onclick="filterCategory('politics')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">POLITICS (දේශපාලන)</button>
-            <button onclick="filterCategory('sports')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">SPORTS (ක්‍රීඩා)</button>
-            <button onclick="filterCategory('world')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">WORLD (විදේශ)</button>
-            <button onclick="filterCategory('education')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">EDUCATION (අධ්‍යාපන)</button>
-            <button onclick="filterCategory('business')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">BUSINESS (ව්‍යාපාර)</button>
-            <button onclick="filterCategory('entertainment')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">ENTERTAINMENT (විනෝදාස්වාද)</button>
-            <button onclick="filterCategory('tech')" class="cat-btn px-3 py-1.5 rounded transition whitespace-nowrap hover:text-blue-400 hover:bg-slate-800">TECH (තාක්ෂණ)</button>
+    <!-- Navigation Bar / Categories -->
+    <nav class="bg-white border-y-2 border-slate-300 shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto flex items-center overflow-x-auto no-scrollbar font-bold text-slate-800 text-sm md:text-base">
+            <button onclick="filterCategory('politics')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">දේශපාලන</button>
+            <button onclick="filterCategory('sports')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ක්‍රීඩා</button>
+            <button onclick="filterCategory('education')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">අධ්‍යාපන</button>
+            <button onclick="filterCategory('world')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">විදේශ</button>
+            <button onclick="filterCategory('business')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ව්‍යාපාර</button>
+            <button onclick="filterCategory('health')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සෞඛ්‍ය</button>
+            <button onclick="filterCategory('all')" class="px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සම්බන්ධ වන්න</button>
         </div>
     </nav>
 
-    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Breaking News Ticker Bar -->
+    <div class="bg-black text-white border-b-2 border-slate-900 overflow-hidden py-1.5 px-4 flex items-center">
+        <div class="overflow-hidden w-full text-xs md:text-sm font-semibold tracking-wide">
+            <div id="ticker-text" class="animate-marquee space-x-8">
+                <span>🔥 ශිෂ්‍යත්ව විභාගය අනිද්දා: මුළු අයදුම්කරුවන් 294,089ක්</span>
+                <span class="text-red-500">◀◀</span>
+                <span>මෝදි සහ හොංකොං අගමැති අතර දුරකථන සංවාදයක්</span>
+                <span class="text-red-500">◀◀</span>
+                <span>සවුදි අරාබිය, තුර්කිය සහ පාකිස්තානය අතර සාකච්ඡා ආරම්භ වේ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container (Grid Layout) -->
+    <main class="container mx-auto p-4 md:p-6">
         
-        <!-- Main News Column -->
-        <div class="md:col-span-2">
-            <h2 id="category-title" class="text-xl font-bold mb-4 text-blue-300 border-b border-blue-500 pb-1">🔥 සියලුම ප්‍රධාන පුවත් (Top Latest News)</h2>
-            
-            <!-- Dynamic News Container -->
-            <div id="news-container" class="space-y-4">
-                <div class="text-center py-8 text-gray-400">
-                    <p class="animate-pulse">ප්‍රධාන මාධ්‍ය ජාලවලින් පුවත් ලබාගනිමින් පවතී... (Loading News...)</p>
-                </div>
-            </div>
-
-            <!-- Parliament Live Section -->
-            <h2 id="title-parliament" class="text-xl font-bold my-6 text-blue-300 border-b border-blue-500 pb-1">🏛️ ශ්‍රී ලංකා පාර්ලිමේන්තුව (Live Stream)</h2>
-            <div class="card aspect-video">
-                <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/live_stream?channel=UCparliament" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <!-- News Cards Grid (3 Columns) -->
+        <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Loading Skeletons -->
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+            <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
         </div>
 
-        <!-- Sidebar Section -->
-        <div>
-            <!-- Cartoon Box -->
-            <div class="card">
-                <h3 class="text-lg font-bold text-blue-300 mb-2">🎨 අද කාටූනය</h3>
-                <div id="cartoon-box" class="bg-slate-800 p-2 text-center rounded">
-                    <p class="text-xs text-gray-400">Daily Newspaper Cartoon Auto-Fetcher</p>
-                </div>
-            </div>
+    </main>
 
-            <!-- Political Official Facebook Pages -->
-            <div class="card border border-blue-900/50">
-                <h3 class="text-lg font-bold text-blue-300 mb-3 border-b border-blue-800 pb-1">🗣️ දේශපාලඥයින්ගේ නිල Facebook පිටු</h3>
-                <ul class="text-sm space-y-2.5 text-blue-200">
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/AnuraKumaraDissanayake" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">අනුර කුමාර දිසානායක ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/SajithPremadasaOfficial" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">සජිත් ප්‍රේමදාස ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/NamalRajapaksaSL" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">නාමල් රාජපක්ෂ ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/DilithJayaweeraOfficial" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">දිලිත් ජයවීර ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/bimal.rathnayake" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">බිමල් රත්නායක ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/chandrikabandaranaikekumaratunga" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">චන්ද්‍රිකා බණ්ඩාරනායක ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/maithripalas" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">මෛත්‍රිපාල සිරිසේන ↗</a>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-blue-400">🔹</span>
-                        <a href="https://www.facebook.com/patali.champika" target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline flex-1">පාටලී චම්පික රණවක ↗</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Quick Read Modal (Internal Article Viewer) -->
+    <!-- Quick Read Modal -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-[#1c2541] w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-blue-500 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-2.5 py-1 rounded font-bold">✕ වසන්න (Close)</button>
-            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-3 hidden">
-            <h3 id="modalTitle" class="text-xl font-bold text-white mt-3 mb-2 leading-snug"></h3>
-            <p id="modalBody" class="text-gray-300 text-sm leading-relaxed my-4"></p>
+        <div class="bg-white w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-slate-300 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-1 rounded font-bold">✕ වසන්න</button>
+            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-4 hidden">
+            <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-4 mb-2 leading-snug"></h3>
+            <p id="modalBody" class="text-slate-700 text-sm leading-relaxed my-4"></p>
         </div>
     </div>
 
-    <!-- Live RSS Multi-Category Fetcher Script -->
+    <!-- Live RSS Script -->
     <script>
         const rssFeeds = {
             si: [
@@ -142,15 +129,12 @@
         };
 
         let activeNewsList = [];
-        let currentLanguage = 'si';
         let currentFilter = 'all';
 
         async function fetchLiveNews(lang = 'si') {
-            currentLanguage = lang;
-            const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '<div class="text-center py-8 text-gray-400"><p class="animate-pulse">පුවත් ලබාගනිමින් පවතී... (Fetching News...)</p></div>';
-            
+            const grid = document.getElementById('news-grid');
             activeNewsList = [];
+
             const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
 
             for (let feed of selectedFeeds) {
@@ -187,64 +171,42 @@
 
         function filterCategory(catKey) {
             currentFilter = catKey;
-
-            const buttons = document.querySelectorAll('.cat-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white');
-                btn.classList.add('hover:text-blue-400', 'hover:bg-slate-800');
-            });
-
-            event.target.classList.add('bg-blue-600', 'text-white');
-
-            const titleElement = document.getElementById('category-title');
-            const catNames = {
-                'all': '🔥 සියලුම ප්‍රධාන පුවත් (Top Latest News)',
-                'politics': '🏛️ දේශපාලන පුවත් (Politics)',
-                'sports': '🏏 ක්‍රීඩා පුවත් (Sports)',
-                'world': '🌐 විදේශ පුවත් (World)',
-                'education': '🎓 අධ්‍යාපන පුවත් (Education)',
-                'business': '📈 ව්‍යාපාරික පුවත් (Business)',
-                'entertainment': '🎬 විනෝදාස්වාද පුවත් (Entertainment)',
-                'tech': '💻 තාක්ෂණික පුවත් (Tech)'
-            };
-            titleElement.innerText = catNames[catKey] || '🔥 ප්‍රධාන පුවත්';
-
             renderNews();
         }
 
         function renderNews() {
-            const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '';
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = '';
 
             let filteredList = activeNewsList;
 
             if (currentFilter !== 'all') {
                 filteredList = activeNewsList.filter(news => {
                     const text = (news.title + " " + news.description).toLowerCase();
-                    
-                    if (currentFilter === 'politics') return text.includes('දේශපාලන') || text.includes('මංත්‍රී') || text.includes('අමාත්‍ය') || text.includes('parliament') || text.includes('politics') || text.includes('මැතිවරණ');
-                    if (currentFilter === 'sports') return text.includes('ක්‍රිකට්') || text.includes('ක්‍රීඩා') || text.includes('sport') || text.includes('cricket') || text.includes('ලීග්');
-                    if (currentFilter === 'world') return text.includes('ලෝක') || text.includes('විදේශ') || text.includes('world') || text.includes('global') || text.includes('ඇමෙරිකා');
-                    if (currentFilter === 'education') return text.includes('පාසල්') || text.includes('විභාග') || text.includes('අධ්‍යාපන') || text.includes('education') || text.includes('ශිෂ්‍ය');
-                    if (currentFilter === 'business') return text.includes('මුදල්') || text.includes('ව්‍යාපාර') || text.includes('බැංකු') || text.includes('business') || text.includes('economy') || text.includes('රූපියල්');
-                    if (currentFilter === 'entertainment') return text.includes('සිනමා') || text.includes('කලා') || text.includes('entertainment') || text.includes('cinema') || text.includes('නළුවා');
-                    if (currentFilter === 'tech') return text.includes('තාක්ෂණ') || text.includes('tech') || text.includes('ai') || text.includes('digital') || text.includes('දුරකථන');
+                    if (currentFilter === 'politics') return text.includes('දේශපාලන') || text.includes('මංත්‍රී') || text.includes('අමාත්‍ය') || text.includes('parliament');
+                    if (currentFilter === 'sports') return text.includes('ක්‍රිකට්') || text.includes('ක්‍රීඩා') || text.includes('cricket');
+                    if (currentFilter === 'education') return text.includes('පාසල්') || text.includes('විභාග') || text.includes('අධ්‍යාපන');
+                    if (currentFilter === 'world') return text.includes('ලෝක') || text.includes('විදේශ') || text.includes('world');
+                    if (currentFilter === 'business') return text.includes('මුදල්') || text.includes('ව්‍යාපාර') || text.includes('බැංකු');
+                    if (currentFilter === 'health') return text.includes('සෞඛ්‍ය') || text.includes('රෝහල') || text.includes('වෛද්‍ය');
                     return true;
                 });
             }
 
             if (filteredList.length === 0) {
-                newsContainer.innerHTML = `<p class="text-center text-gray-400 py-8 bg-slate-900/50 rounded-lg">මේ මොහොතේ මෙම අංශයට (Category) අදාළ නවතම පුවත් නොමැත. කරුණාකර "සියලුම" (ALL) තෝරන්න.</p>`;
+                grid.innerHTML = `<p class="col-span-full text-center text-slate-500 py-12 border-2 border-slate-300 rounded bg-white">මේ මොහොතේ මෙම අංශයට අදාළ පුවත් නොමැත.</p>`;
                 return;
             }
 
             filteredList.forEach((news, idx) => {
-                newsContainer.innerHTML += `
-                    <div class="card border border-slate-700 hover:border-blue-500 transition p-4 cursor-pointer" onclick="openNewsModal(${idx})">
-                        <img src="${news.image}" alt="News Image" class="w-full h-56 object-cover rounded-md mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
-                        <h3 class="text-lg font-bold text-blue-200 hover:text-white mb-2 leading-snug">${news.title}</h3>
-                        <div class="flex justify-end items-center text-xs text-gray-400 mt-2">
-                            <span>${news.pubDate}</span>
+                grid.innerHTML += `
+                    <div class="bg-white border-2 border-slate-300 rounded p-3 hover:shadow-lg transition cursor-pointer flex flex-col justify-between" onclick="openNewsModal(${idx})">
+                        <div>
+                            <img src="${news.image}" alt="News Image" class="w-full h-48 object-cover rounded mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
+                            <h3 class="font-bold text-slate-900 text-base hover:text-blue-600 line-clamp-3 leading-snug">${news.title}</h3>
+                        </div>
+                        <div class="text-right text-xs text-slate-500 font-semibold mt-3 pt-2 border-t border-slate-200">
+                            ${news.pubDate}
                         </div>
                     </div>
                 `;
@@ -275,9 +237,8 @@
             document.getElementById('newsModal').classList.add('hidden');
         }
 
-        // Auto load news on startup
+        // Auto load on start
         fetchLiveNews('si');
     </script>
-
 </body>
 </html>
