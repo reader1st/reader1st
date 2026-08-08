@@ -7,32 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #f8fafc; color: #1e293b; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; font-family: sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 30s linear infinite; }
-        
-        /* 1 - Rotating Circle Animation */
-        @keyframes spinInnerNumber {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
-        }
-        .rotate-number {
-            display: inline-block;
-            animation: spinInnerNumber 3s linear infinite;
-            transform-style: preserve-3d;
-        }
+        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <!-- TOP HEADER -->
+    <!-- Header Section -->
     <header class="bg-white border-b-2 border-slate-300 relative shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
-            
-            <!-- Social Icons -->
-            <div class="flex items-center space-x-3 text-slate-800 text-2xl mb-4 md:mb-0">
+        <div class="absolute top-3 right-3 sm:right-6 flex space-x-1 border border-slate-800 p-1 bg-white rounded shadow-sm z-10">
+            <button onclick="changeLanguage('si')" class="bg-blue-700 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-800">සිංහල</button>
+            <button onclick="changeLanguage('ta')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">தமிழ்</button>
+            <button onclick="changeLanguage('en')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">English</button>
+        </div>
+
+        <div class="container mx-auto px-4 pt-6 pb-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-3 text-slate-800 text-xl mb-4 md:mb-0">
                 <a href="#" class="hover:text-blue-600"><i class="fa-solid fa-bolt"></i></a>
                 <a href="#" class="hover:text-blue-600"><i class="fa-brands fa-facebook"></i></a>
                 <a href="#" class="hover:text-blue-400"><i class="fa-brands fa-twitter"></i></a>
@@ -40,116 +33,291 @@
                 <a href="#" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
             </div>
 
-            <!-- Logo (Larger Text + Rotating Number '1' Inside Circle) -->
             <div class="flex items-center justify-center my-2 md:my-0">
-                <span class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">Reader</span>
-                <div class="bg-[#b91c1c] text-white text-4xl md:text-6xl font-bold rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-2 shadow-lg overflow-hidden">
-                    <span class="rotate-number">1</span>
-                </div>
-                <span class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">NEWS</span>
+                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">Reader</span>
+                <span class="bg-[#b91c1c] text-white text-3xl md:text-4xl font-bold rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center mx-2 shadow-inner">1</span>
+                <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">NEWS</span>
             </div>
 
-            <!-- Language Buttons -->
-            <div class="flex space-x-1 border border-slate-800 p-1 bg-white rounded shadow-sm">
-                <button onclick="changeLanguage('si')" class="bg-blue-700 text-white font-bold text-xs px-3 py-1 rounded hover:bg-blue-800">සිංහල</button>
-                <button onclick="changeLanguage('ta')" class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded hover:bg-blue-700">தமிழ்</button>
-                <button onclick="changeLanguage('en')" class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded hover:bg-blue-700">English</button>
-            </div>
+            <div class="hidden md:block w-32"></div>
         </div>
     </header>
 
-    <!-- NAVIGATION BAR -->
-    <nav class="bg-white border-y-2 border-slate-400 shadow-sm sticky top-0 z-30">
-        <div class="container mx-auto flex items-center overflow-x-auto no-scrollbar font-bold text-slate-800 text-base">
-            <button onclick="showSection('politics')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">දේශපාලන</button>
-            <button onclick="showSection('sports')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ක්‍රීඩා</button>
-            <button onclick="showSection('education')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">අධ්‍යාපන</button>
-            <button onclick="showSection('world')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">විදේශ</button>
-            <button onclick="showSection('business')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ව්‍යාපාර</button>
-            <button onclick="showSection('health')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සෞඛ්‍ය</button>
-            <button onclick="showSection('all')" class="px-6 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සම්බන්ධ වන්න</button>
+    <!-- Navigation Bar -->
+    <nav class="bg-white border-y-2 border-slate-300 shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto flex items-center overflow-x-auto no-scrollbar font-bold text-slate-800 text-sm md:text-base">
+            <button onclick="showSection('politics')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">දේශපාලන</button>
+            <button onclick="showSection('sports')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ක්‍රීඩා</button>
+            <button onclick="showSection('education')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">අධ්‍යාපන</button>
+            <button onclick="showSection('world')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">විදේශ</button>
+            <button onclick="showSection('business')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">ව්‍යාපාර</button>
+            <button onclick="showSection('health')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සෞඛ්‍ය</button>
+            <button onclick="showSection('all')" class="nav-btn px-5 py-2.5 border-r border-slate-300 hover:bg-slate-100 whitespace-nowrap">සියලුම පුවත්</button>
         </div>
     </nav>
 
-    <!-- TICKER BAR -->
+    <!-- Ticker Bar -->
     <div class="bg-black text-white border-b-2 border-slate-900 overflow-hidden py-1.5 px-4 flex items-center">
         <div class="overflow-hidden w-full text-xs md:text-sm font-semibold tracking-wide">
             <div id="ticker-text" class="animate-marquee space-x-8">
-                <span>ශිෂ්‍යත්ව විභාගය අනිද්දා: මුළු අයදුම්කරුවන් 294,089ක්</span>
+                <span>🔥 ශ්‍රී ලංකා ප්‍රධාන පුවත් සජීවීව | Reader 1 News </span>
                 <span class="text-red-500">◀◀</span>
-                <span>මෝදි සහ නෙතන්යාහු අතර දුරකථන සංවාදයක්</span>
-                <span class="text-red-500">◀◀</span>
-                <span>සවුදි අරාබිය, තුර්කිය සහ පාකිස්තානය අතර සාර්ථක සාකච්ඡා</span>
+                <span>දේශපාලන, ක්‍රීඩා, අධ්‍යාපන, විදේශ, ව්‍යාපාර හා සෞඛ්‍ය නවතම තොරතුරු</span>
             </div>
         </div>
     </div>
 
-    <!-- MAIN CONTENT GRID -->
+    <!-- Main Content Area -->
     <main class="container mx-auto p-4 md:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-6">
-            <div class="lg:col-span-5 flex flex-col gap-4">
-                <div id="main-featured-news" class="bg-white border-2 border-slate-400 p-4 rounded min-h-[320px] shadow-sm flex flex-col justify-between">
-                    <div>
-                        <span class="bg-red-700 text-white text-xs font-bold px-2 py-1 rounded">ප්‍රධාන පුවත</span>
-                        <h2 class="text-xl md:text-2xl font-bold mt-3 text-slate-900 leading-snug">ශ්‍රී ලංකා ප්‍රධාන පුවත් සජීවී යාවත්කාලීන කිරීම්</h2>
-                        <p class="text-sm text-slate-600 mt-2">දේශපාලන, ක්‍රීඩා, අධ්‍යාපන, විදේශ, ව්‍යාපාර හා සෞඛ්‍ය ක්ෂේත්‍රවල නවතම තොරතුරු සජීවීව ලබාගන්න.</p>
+        
+        <!-- SECTION: Politics -->
+        <section id="sec-politics" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-700 pb-1"><i class="fa-brands fa-facebook text-blue-600"></i> දේශපාලඥයින්ගේ නිල Facebook පිටු</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <a href="https://www.facebook.com/AnuraKumaraDissanayake" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>අනුර දිසානායක</span></a>
+                <a href="https://www.facebook.com/SajithPremadasaOfficial" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>සජිත් ප්‍රේමදාස</span></a>
+                <a href="https://www.facebook.com/HarshadeSilvaSL" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>හර්ෂ ද සිල්වා</span></a>
+                <a href="https://www.facebook.com/DilithJayaweeraOfficial" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>දිලිත් ජයවීර</span></a>
+                <a href="https://www.facebook.com/NamalRajapaksaSL" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>නාමල් රාජපක්ෂ</span></a>
+                <a href="https://www.facebook.com/bimal.rathnayake" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>විමල් රත්නායක</span></a>
+                <a href="https://www.facebook.com/chandrikabandaranaikekumaratunga" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>චන්ද්‍රිකා කුමාරතුංග</span></a>
+                <a href="https://www.facebook.com/ranilwickremesinghe" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>රනිල් වික්‍රමසිංහ</span></a>
+                <a href="https://www.facebook.com/UdayaGammanpilaOfficial" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>උදය ගම්මන්පිල</span></a>
+                <a href="https://www.facebook.com/duminda.dissanayake.sl" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>දුමින්ද දිසානායක</span></a>
+                <a href="https://www.facebook.com/patali.champika" target="_blank" class="bg-white p-4 border border-slate-300 rounded shadow-sm hover:shadow-md flex items-center space-x-3 text-slate-800 font-bold hover:text-blue-600"><i class="fa-brands fa-facebook text-2xl text-blue-600"></i><span>පාඨලී චම්පික රණවක</span></a>
+            </div>
+        </section>
+
+        <!-- SECTION: Sports -->
+        <section id="sec-sports" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-green-700 border-b-2 border-green-700 pb-1">🏆 ක්‍රීඩා පුවත් සහ සජීවී යාවත්කාලීන</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="https://srilankacricket.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:border-green-600"><h3 class="font-bold text-lg text-green-800 mb-1">🏏 ශ්‍රී ලංකා ක්‍රිකට්</h3><p class="text-xs text-slate-600">srilankacricket.lk නිල වෙබ් අඩවියට පිවිසෙන්න</p></a>
+                <a href="https://www.icc-cricket.com" target="_blank" class="bg-white p-4 border rounded shadow hover:border-green-600"><h3 class="font-bold text-lg text-green-800 mb-1">🌐 අන්තර්ජාතික ශ්‍රේණිගත කිරීම්</h3><p class="text-xs text-slate-600">icccricket.com වෙතින් නවතම ශ්‍රේණිගත කිරීම්</p></a>
+                <a href="https://www.espncricinfo.com" target="_blank" class="bg-white p-4 border rounded shadow hover:border-green-600"><h3 class="font-bold text-lg text-green-800 mb-1">🔴 ක්‍රිකට් තරග සජීවි බලන්න</h3><p class="text-xs text-slate-600">espncricinfo.com සජීවී ලකුණු පුවරුව</p></a>
+                <a href="https://www.bbc.com/sport" target="_blank" class="bg-white p-4 border rounded shadow hover:border-green-600"><h3 class="font-bold text-lg text-green-800 mb-1">⚽ විශේෂ ක්‍රීඩා තොරතුරු</h3><p class="text-xs text-slate-600">bbc.com/sport ජාත්‍යන්තර ක්‍රීඩා</p></a>
+                <a href="https://www.fifa.com" target="_blank" class="bg-white p-4 border rounded shadow hover:border-green-600"><h3 class="font-bold text-lg text-green-800 mb-1">🌍 පාපන්දු ලෝකය</h3><p class="text-xs text-slate-600">fifa.com නිල පාපන්දු යාවත්කාලීන</p></a>
+            </div>
+        </section>
+
+        <!-- SECTION: Education -->
+        <section id="sec-education" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-blue-700 border-b-2 border-blue-700 pb-1">🎓 අධ්‍යාපනික Portal සහ වෙබ් අඩවි</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="http://www.edupub.gov.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>📚 පාසල් පොත් භාගත කරගන්න</span><span class="text-xs font-normal text-blue-600">edupub.gov.lk</span></a>
+                <a href="https://www.dpeducation.org" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>🛠️ කාර්මික පාඨමාලා</span><span class="text-xs font-normal text-blue-600">dpeducation.org</span></a>
+                <a href="https://www.e-thaksalawa.moe.gov.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>💻 e-Thaksalawa</span><span class="text-xs font-normal text-blue-600">e-thaksalawa.moe.gov.lk</span></a>
+                <a href="https://www.doenets.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>📝 විභාග දෙපාර්තමේන්තුව</span><span class="text-xs font-normal text-blue-600">doenets.lk</span></a>
+                <a href="https://www.ugc.ac.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>🏛️ විශ්වවිද්‍යාල ප්‍රතිපාදන කොමිෂන් සභාව</span><span class="text-xs font-normal text-blue-600">ugc.ac.lk</span></a>
+                <a href="https://www.nie.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>📖 ජාතික අධ්‍යාපන ආයතනය</span><span class="text-xs font-normal text-blue-600">nie.lk</span></a>
+                <a href="https://www.moe.gov.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:bg-blue-50 text-slate-800 font-bold flex flex-col"><span>🏛️ අධ්‍යාපන අමාත්‍යාංශය</span><span class="text-xs font-normal text-blue-600">moe.gov.lk</span></a>
+            </div>
+        </section>
+
+        <!-- SECTION: World -->
+        <section id="sec-world" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700 border-b-2 border-purple-700 pb-1">🌐 ප්‍රධාන විදේශීය පුවත් සේවාවන්</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <a href="https://www.bbc.com/news" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">BBC News</a>
+                <a href="https://www.reuters.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">Reuters</a>
+                <a href="https://apnews.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">AP News</a>
+                <a href="https://www.aljazeera.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">Al Jazeera</a>
+                <a href="https://edition.cnn.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">CNN</a>
+                <a href="https://www.theguardian.com/international" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">The Guardian</a>
+                <a href="https://www.bloomberg.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">Bloomberg</a>
+                <a href="https://www.nytimes.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">NY Times</a>
+                <a href="https://www.dw.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">DW</a>
+                <a href="https://time.com" target="_blank" class="bg-white p-3 border rounded text-center font-bold text-slate-800 hover:text-purple-600">Time</a>
+            </div>
+        </section>
+
+        <!-- SECTION: Business -->
+        <section id="sec-business" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-amber-700 border-b-2 border-amber-700 pb-1">📈 ව්‍යාපාරික සහ මූල්‍ය තොරතුරු</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="https://www.cbsl.gov.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">🏦 ශ්‍රී ලංකා මහ බැංකුව</h3><p class="text-xs text-slate-600">නවතම පුවත් (cbsl.gov.lk)</p></a>
+                <a href="https://www.cbsl.gov.lk/en/statistics" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">📊 මහ බැංකු නවතම දත්ත</h3><p class="text-xs text-slate-600">ආර්ථික සංඛ්‍යාති</p></a>
+                <a href="https://www.cbsl.gov.lk/en/publications" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">📄 අලුත්ම නිල වාර්තාව</h3><p class="text-xs text-slate-600">CBSL Publications</p></a>
+                <a href="https://www.cse.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">🏛️ කොළඹ කොටස් වෙළෙඳපොළ</h3><p class="text-xs text-slate-600">CSE Live Market</p></a>
+                <a href="https://www.sec.gov.lk" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">🛡️ සුරැකුම්පත් හා විනිමය කොමිෂන් සභාව</h3><p class="text-xs text-slate-600">SEC Sri Lanka</p></a>
+                <a href="http://www.statistics.gov.lk/Poverty/StaticalInformation/PovertyLine" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">📉 දුප්පත්කම - ජන හා සංඛ්‍යාලේඛන</h3><p class="text-xs text-slate-600">statistics.gov.lk</p></a>
+                <a href="https://data.worldbank.org/country/sri-lanka" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">🌍 ශ්‍රී ලංකාවේ දුප්පත්කම - ලෝක බැංකුව</h3><p class="text-xs text-slate-600">World Bank Data</p></a>
+                <a href="https://www.investing.com/commodities/crude-oil" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">🛢️ ලෝක බොරතෙල් මිල ගණන්</h3><p class="text-xs text-slate-600">Investing.com Crude Oil</p></a>
+                <a href="https://www.opec.org" target="_blank" class="bg-white p-4 border rounded shadow hover:border-amber-600"><h3 class="font-bold text-amber-800">⛽ OPEC තෙල් මිල</h3><p class="text-xs text-slate-600">opec.org Official</p></a>
+            </div>
+        </section>
+
+        <!-- SECTION: Health -->
+        <section id="sec-health" class="content-section hidden">
+            <h2 class="text-2xl font-bold mb-4 text-emerald-700 border-b-2 border-emerald-700 pb-1">🏥 සෞඛ්‍ය උපදෙස් සහ රෝහල් සේවාවන්</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- News-only Links -->
+                <div class="space-y-3">
+                    <h3 class="font-bold text-lg text-emerald-800 border-b pb-1">📌 නවතම පුවත් සහ තොරතුරු</h3>
+                    <a href="https://www.health.gov.lk" target="_blank" class="block p-3 bg-white border rounded shadow-sm hover:border-emerald-600 font-bold text-slate-800">🏥 ශ්‍රී ලංකා සෞඛ්‍ය අමාත්‍යාංශය (health.gov.lk)</a>
+                    <a href="http://www.epid.gov.lk" target="_blank" class="block p-3 bg-white border rounded shadow-sm hover:border-emerald-600 font-bold text-slate-800">🦠 නවතම වසංගත රෝග තොරතුරු (epid.gov.lk)</a>
+                    <a href="https://nimh.health.gov.lk" target="_blank" class="block p-3 bg-white border rounded shadow-sm hover:border-emerald-600 font-bold text-slate-800">🧠 මානසික සෞඛ්‍ය සහය (nimh.health.gov.lk)</a>
+                    <a href="https://www.mayoclinic.org" target="_blank" class="block p-3 bg-white border rounded shadow-sm hover:border-emerald-600 font-bold text-slate-800">🩺 නවතම රෝග ලක්ෂණ තොරතුරු (mayoclinic.org)</a>
+                    <a href="https://www.echannelling.com" target="_blank" class="block p-3 bg-white border rounded shadow-sm hover:border-emerald-600 font-bold text-slate-800 bg-emerald-50">👨‍⚕️ වෛද්‍යවරයකු වෙන් කරගන්න (echannelling.com)</a>
+                </div>
+
+                <!-- Web Views (Frames) -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg text-emerald-800 border-b pb-1">🌐 පූර්ණ සෞඛ්‍ය වෙබ් අඩවි</h3>
+                    <div class="border rounded bg-white p-2">
+                        <a href="https://slma.lk" target="_blank" class="font-bold text-blue-600 hover:underline block mb-1">🏥 ශ්‍රී ලංකා වෛද්‍ය සංගමය (slma.lk) ↗</a>
                     </div>
-                    <div class="text-xs text-slate-500 mt-4 pt-2 border-t border-slate-200">ඊයේ | පැය 2 කට පෙර</div>
+                    <div class="border rounded bg-white p-2">
+                        <a href="https://www.lankahospitals.com" target="_blank" class="font-bold text-blue-600 hover:underline block mb-1">🏨 ලංකා හොස්පිටල්ස් (lankahospitals.com) ↗</a>
+                    </div>
+                    <div class="border rounded bg-white p-2">
+                        <a href="https://asirihealth.com" target="_blank" class="font-bold text-blue-600 hover:underline block mb-1">🏥 ආසිරි හොස්පිටල්ස් (asirihealth.com) ↗</a>
+                    </div>
+                    <div class="border rounded bg-white p-2">
+                        <a href="https://www.who.int" target="_blank" class="font-bold text-blue-600 hover:underline block mb-1">🌍 ලෝක සෞඛ්‍ය සංවිධානය (who.int) ↗</a>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="bg-white border-2 border-slate-400 p-4 rounded min-h-[90px] shadow-sm">
-                    <h3 class="font-bold text-slate-800 text-sm">විශේෂ පුවත් මුඛ්‍යාංග සහ විශේෂාංග ලිපි</h3>
-                </div>
+        <!-- SECTION: All / Default Feed Grid -->
+        <section id="sec-all" class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-slate-800 border-b pb-1">📰 නවතම සියලුම ප්‍රධාන පුවත්</h2>
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+                <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
+                <div class="bg-white border-2 border-slate-300 rounded p-4 h-64 animate-pulse"></div>
             </div>
-
-            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-                <div class="bg-white border-2 border-slate-400 rounded p-3 min-h-[190px] shadow-sm hover:border-blue-600 transition">
-                    <div class="bg-slate-200 h-24 rounded mb-2 flex items-center justify-center text-slate-400 text-xs">රූපය</div>
-                    <h4 class="font-bold text-xs text-slate-800 line-clamp-3">නවතම පුවත් තොරතුරු</h4>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white border-2 border-slate-400 rounded p-5 min-h-[220px] shadow-sm">
-                <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-3">ව්‍යාපාරික & මූල්‍ය පුවත්</h3>
-                <p class="text-sm text-slate-600">කොළඹ කොටස් වෙළඳපොළ සහ දේශීය/විදේශීය ආර්ථික පුවත් තොරතුරු මෙතැනින් බලන්න.</p>
-            </div>
-            <div class="bg-white border-2 border-slate-400 rounded p-5 min-h-[220px] shadow-sm">
-                <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-3">ක්‍රීඩා & විනෝදාස්වාදය</h3>
-                <p class="text-sm text-slate-600">ක්‍රිකට්, පාපන්දු ඇතුළු දෙස් විදෙස් ක්‍රීඩා තොරතුරු සහ සජීවී තරග තොරතුරු.</p>
-            </div>
-        </div>
+        </section>
 
     </main>
 
+    <!-- Quick Read Modal -->
+    <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-lg p-6 shadow-2xl border border-slate-300 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-1 rounded font-bold">✕ වසන්න</button>
+            <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover rounded-md mt-4 hidden">
+            <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-4 mb-2 leading-snug"></h3>
+            <p id="modalBody" class="text-slate-700 text-sm leading-relaxed my-4"></p>
+        </div>
+    </div>
+
+    <!-- Live RSS Script -->
     <script>
+        const rssFeeds = {
+            si: [
+                { name: "Ada Derana", url: "https://sinhala.adaderana.lk/rss.php" },
+                { name: "Hiru News", url: "https://www.hirunews.lk/rss/sinhala.xml" },
+                { name: "BBC Sinhala", url: "https://www.bbc.com/sinhala/index.xml" }
+            ],
+            en: [
+                { name: "Ada Derana English", url: "http://www.adaderana.lk/rss.php" },
+                { name: "Daily Mirror", url: "https://www.dailymirror.lk/RSS_Feeds/breaking-news" }
+            ],
+            ta: [
+                { name: "Virakesari", url: "https://www.virakesari.lk/feed" }
+            ]
+        };
+
+        let activeNewsList = [];
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            if (sectionId === 'all') {
+                document.getElementById('sec-all').classList.remove('hidden');
+            } else {
+                const targetSec = document.getElementById('sec-' + sectionId);
+                if (targetSec) targetSec.classList.remove('hidden');
+            }
+        }
+
+        async function fetchLiveNews(lang = 'si') {
+            const grid = document.getElementById('news-grid');
+            activeNewsList = [];
+            const selectedFeeds = rssFeeds[lang] || rssFeeds['si'];
+
+            for (let feed of selectedFeeds) {
+                try {
+                    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`);
+                    const data = await response.json();
+
+                    if (data.status === 'ok' && data.items) {
+                        data.items.forEach(item => {
+                            let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+                            if (!imgUrl && item.description) {
+                                const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+                                if (imgMatch) imgUrl = imgMatch[1];
+                            }
+                            let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '').trim() : 'විස්තර සහිත පුවත කියවන්න.';
+
+                            activeNewsList.push({
+                                title: item.title,
+                                pubDate: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                                image: imgUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+                                description: cleanDesc
+                            });
+                        });
+                    }
+                } catch (e) {
+                    console.error("RSS Fetch Error: ", e);
+                }
+            }
+
+            renderNews();
+        }
+
+        function renderNews() {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = '';
+
+            if (activeNewsList.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-slate-500 py-12 border-2 border-slate-300 rounded bg-white">මේ මොහොතේ පුවත් ලබාගැනීමට නොහැකි විය.</p>`;
+                return;
+            }
+
+            activeNewsList.forEach((news, idx) => {
+                grid.innerHTML += `
+                    <div class="bg-white border-2 border-slate-300 rounded p-3 hover:shadow-lg transition cursor-pointer flex flex-col justify-between" onclick="openNewsModal(${idx})">
+                        <div>
+                            <img src="${news.image}" alt="News Image" class="w-full h-48 object-cover rounded mb-3" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'">
+                            <h3 class="font-bold text-slate-900 text-base hover:text-blue-600 line-clamp-3 leading-snug">${news.title}</h3>
+                        </div>
+                        <div class="text-right text-xs text-slate-500 font-semibold mt-3 pt-2 border-t border-slate-200">
+                            ${news.pubDate}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
         function changeLanguage(lang) {
-            console.log("Language changed to: " + lang);
+            fetchLiveNews(lang);
         }
-        function showSection(sec) {
-            console.log("Navigating to: " + sec);
+
+        function openNewsModal(index) {
+            const item = activeNewsList[index];
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalBody').innerText = item.description;
+
+            const modalImg = document.getElementById('modalImage');
+            if (item.image) {
+                modalImg.src = item.image;
+                modalImg.classList.remove('hidden');
+            } else {
+                modalImg.classList.add('hidden');
+            }
+
+            document.getElementById('newsModal').classList.remove('hidden');
         }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.add('hidden');
+        }
+
+        // Auto load on start
+        fetchLiveNews('si');
     </script>
 </body>
 </html>
