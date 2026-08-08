@@ -26,7 +26,7 @@
 </head>
 <body class="bg-gray-100 p-2 md:p-4">
 
-    <!-- MAIN CONTAINER WITH BORDER (Match Wireframe Outer Border) -->
+    <!-- MAIN CONTAINER -->
     <div class="max-w-[1280px] mx-auto border-2 border-slate-900 bg-white p-2 md:p-4 shadow-xl">
 
         <!-- HEADER SECTION -->
@@ -53,24 +53,24 @@
 
                 <!-- Language Selector -->
                 <div class="flex space-x-1 border-2 border-slate-900 p-1 bg-white rounded">
-                    <button onclick="changeLanguage('si')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">සිංහල</button>
-                    <button onclick="changeLanguage('ta')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">தமிழ்</button>
-                    <button onclick="changeLanguage('en')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">English</button>
+                    <button id="lang-si" onclick="changeLanguage('si')" class="bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-700">සිංහල</button>
+                    <button id="lang-ta" onclick="changeLanguage('ta')" class="bg-gray-300 text-black font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-600 hover:text-white">தமிழ்</button>
+                    <button id="lang-en" onclick="changeLanguage('en')" class="bg-gray-300 text-black font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-600 hover:text-white">English</button>
                 </div>
 
             </div>
         </header>
 
-        <!-- NAVIGATION BAR (Wireframe Border Style) -->
+        <!-- NAVIGATION BAR -->
         <nav class="border-2 border-slate-900 mb-3 bg-white">
             <div class="flex items-center justify-between overflow-x-auto no-scrollbar font-bold text-slate-900 text-sm md:text-base divide-x-2 divide-slate-900">
-                <button onclick="showSection('home')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ප්‍රධාන පිටුව</button>
-                <button onclick="showSection('politics')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">දේශපාලන</button>
-                <button onclick="showSection('sports')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ක්‍රීඩා</button>
-                <button onclick="showSection('education')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">අධ්‍යාපන</button>
-                <button onclick="showSection('world')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">විදේශ</button>
-                <button onclick="showSection('business')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ව්‍යාපාර</button>
-                <button onclick="showSection('health')" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">සෞඛ්‍ය</button>
+                <button onclick="showSection('home')" id="nav-home" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ප්‍රධාන පිටුව</button>
+                <button onclick="showSection('politics')" id="nav-politics" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">දේශපාලන</button>
+                <button onclick="showSection('sports')" id="nav-sports" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ක්‍රීඩා</button>
+                <button onclick="showSection('education')" id="nav-education" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">අධ්‍යාපන</button>
+                <button onclick="showSection('world')" id="nav-world" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">විදේශ</button>
+                <button onclick="showSection('business')" id="nav-business" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">ව්‍යාපාර</button>
+                <button onclick="showSection('health')" id="nav-health" class="px-4 py-2 hover:bg-slate-100 whitespace-nowrap flex-1 text-center">සෞඛ්‍ය</button>
             </div>
         </nav>
 
@@ -78,218 +78,258 @@
         <div class="bg-black text-white border-2 border-slate-900 overflow-hidden py-1 px-3 mb-4 flex items-center">
             <div class="overflow-hidden w-full text-xs md:text-sm font-semibold">
                 <div id="ticker-text" class="animate-marquee space-x-8">
-                    <span>🔥 නවතම තොරතුරු සජීවීව යාවත්කාලීන වේ...</span>
+                    <span id="ticker-status">🔥 නවතම තොරතුරු සජීවීව යාවත්කාලීන වේ...</span>
                 </div>
             </div>
         </div>
 
-        <!-- MAIN LAYOUT (EXACT match to Wireframe Boxes) -->
+        <!-- MAIN LAYOUT -->
         <main>
             <!-- 1. HOME SECTION -->
             <section id="sec-home" class="tab-content">
-                
-                <!-- TOP GRID (Left Large + Colombo Times / Right 6 Outlets) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 mb-3">
                     
-                    <!-- LEFT COLUMN (Derana & Colombo Times) -->
+                    <!-- LEFT COLUMN (Box 1 & Box 2) -->
                     <div class="lg:col-span-5 flex flex-col gap-3">
-                        
-                        <!-- Box 1: Derana News (Big Box) -->
-                        <div id="box-derana" class="border-2 border-slate-900 p-3 bg-white flex flex-col justify-between cursor-pointer hover:bg-slate-50 min-h-[260px]">
+                        <!-- Box 1 -->
+                        <div id="box-1" class="border-2 border-slate-900 p-3 bg-white flex flex-col justify-between cursor-pointer hover:bg-slate-50 min-h-[260px]">
                             <div>
-                                <span class="bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded">අද දෙරණ</span>
-                                <h2 id="derana-title" class="text-base md:text-lg font-bold mt-2 text-slate-900 leading-snug">පූරණය වෙමින්...</h2>
-                                <img id="derana-img" class="w-full h-36 object-cover rounded mt-2 hidden border border-slate-300">
-                                <p id="derana-desc" class="text-xs text-slate-600 mt-2 line-clamp-3"></p>
+                                <span id="b1-tag" class="bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded">Loading...</span>
+                                <h2 id="b1-title" class="text-base md:text-lg font-bold mt-2 text-slate-900 leading-snug">පූරණය වෙමින්...</h2>
+                                <img id="b1-img" class="w-full h-36 object-cover rounded mt-2 hidden border border-slate-300">
+                                <p id="b1-desc" class="text-xs text-slate-600 mt-2 line-clamp-3"></p>
                             </div>
-                            <div class="text-[11px] text-blue-700 underline font-semibold mt-2">news එක click කරන්න (Popup එකෙන් බලන්න) ➔</div>
+                            <div class="text-[11px] text-blue-700 underline font-semibold mt-2">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 2: Colombo Times -->
-                        <div id="box-colombotimes" class="border-2 border-slate-900 p-3 bg-white cursor-pointer hover:bg-slate-50 min-h-[110px]">
-                            <span class="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded">Colombo Times</span>
-                            <h3 id="ct-title" class="font-bold text-slate-900 text-xs md:text-sm mt-1">පූරණය වෙමින්...</h3>
-                            <p id="ct-desc" class="text-xs text-slate-500 line-clamp-2 mt-1"></p>
+                        <!-- Box 2 -->
+                        <div id="box-2" class="border-2 border-slate-900 p-3 bg-white cursor-pointer hover:bg-slate-50 min-h-[110px]">
+                            <span id="b2-tag" class="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded">Loading...</span>
+                            <h3 id="b2-title" class="font-bold text-slate-900 text-xs md:text-sm mt-1">පූරණය වෙමින්...</h3>
+                            <p id="b2-desc" class="text-xs text-slate-500 line-clamp-2 mt-1"></p>
                             <div class="text-[11px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
-
                     </div>
 
-                    <!-- RIGHT COLUMN (6 Grid Outlets: Hiru, Mawbima, Lankadeepa, Island, The Morning, Virakesari) -->
+                    <!-- RIGHT COLUMN (Boxes 3 to 8) -->
                     <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
                         
-                        <!-- Box 3: Hiru News -->
-                        <div id="card-hiru" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 3 -->
+                        <div id="box-3" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-amber-500 text-white px-1.5 py-0.5 rounded font-bold">හිරු News</span>
-                                <h4 id="hiru-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="hiru-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b3-tag" class="text-[10px] bg-amber-500 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b3-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b3-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 4: Mawbima -->
-                        <div id="card-mawbima" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 4 -->
+                        <div id="box-4" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-red-600 text-white px-1.5 py-0.5 rounded font-bold">මව්බිම</span>
-                                <h4 id="mawbima-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="mawbima-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b4-tag" class="text-[10px] bg-red-600 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b4-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b4-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 5: Lankadeepa -->
-                        <div id="card-lankadeepa" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 5 -->
+                        <div id="box-5" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-blue-800 text-white px-1.5 py-0.5 rounded font-bold">ලංකාදීප</span>
-                                <h4 id="lankadeepa-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="lankadeepa-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b5-tag" class="text-[10px] bg-blue-800 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b5-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b5-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 6: Island -->
-                        <div id="card-island" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 6 -->
+                        <div id="box-6" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-emerald-700 text-white px-1.5 py-0.5 rounded font-bold">The Island</span>
-                                <h4 id="island-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="island-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b6-tag" class="text-[10px] bg-emerald-700 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b6-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b6-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 7: The Morning -->
-                        <div id="card-morning" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 7 -->
+                        <div id="box-7" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-orange-600 text-white px-1.5 py-0.5 rounded font-bold">The Morning</span>
-                                <h4 id="morning-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="morning-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b7-tag" class="text-[10px] bg-orange-600 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b7-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b7-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
-                        <!-- Box 8: Virakesari -->
-                        <div id="card-virakesari" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
+                        <!-- Box 8 -->
+                        <div id="box-8" class="border-2 border-slate-900 p-2.5 bg-white cursor-pointer hover:bg-slate-50 flex flex-col justify-between min-h-[180px]">
                             <div>
-                                <span class="text-[10px] bg-purple-700 text-white px-1.5 py-0.5 rounded font-bold">Virakesari</span>
-                                <h4 id="virakesari-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
-                                <img id="virakesari-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
+                                <span id="b8-tag" class="text-[10px] bg-purple-700 text-white px-1.5 py-0.5 rounded font-bold">Loading...</span>
+                                <h4 id="b8-title" class="font-bold text-xs text-slate-900 line-clamp-3 mt-1.5">පූරණය වෙමින්...</h4>
+                                <img id="b8-img" class="w-full h-16 object-cover rounded mt-1.5 hidden border border-slate-200">
                             </div>
                             <div class="text-[10px] text-blue-700 underline font-semibold mt-1">news එක click කරන්න ➔</div>
                         </div>
 
                     </div>
-
                 </div>
 
-                <!-- BOTTOM MANUAL NEWS UPDATES BOXES (Exact Wireframe Bottom 2 Boxes) -->
+                <!-- BOTTOM MANUAL NEWS BOXES -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                     <div class="border-2 border-slate-900 p-4 bg-white min-h-[160px]">
                         <span class="bg-slate-800 text-white text-[10px] px-2 py-0.5 font-bold rounded">Manual Box 1</span>
-                        <p class="text-sm text-slate-700 mt-2 font-medium">මෙම කොටුව තුළට manual news එකක් update කිරීමට අවශ්‍ය පරිදි සකස් කරන්න.</p>
+                        <p class="text-sm text-slate-700 mt-2 font-medium" id="manual-txt-1">මෙම කොටුව තුළට manual news එකක් update කිරීමට අවශ්‍ය පරිදි සකස් කරන්න.</p>
                     </div>
                     <div class="border-2 border-slate-900 p-4 bg-white min-h-[160px]">
                         <span class="bg-slate-800 text-white text-[10px] px-2 py-0.5 font-bold rounded">Manual Box 2</span>
-                        <p class="text-sm text-slate-700 mt-2 font-medium">මෙම කොටුව තුළට manual news එකක් update කිරීමට අවශ්‍ය පරිදි සකස් කරන්න.</p>
+                        <p class="text-sm text-slate-700 mt-2 font-medium" id="manual-txt-2">මෙම කොටුව තුළට manual news එකක් update කිරීමට අවශ්‍ය පරිදි සකස් කරන්න.</p>
                     </div>
                 </div>
-
             </section>
 
-            <!-- OTHER CATEGORIES (Hidden by default) -->
-            <section id="sec-politics" class="tab-content hidden">
-                <h2 class="text-xl font-bold border-b-2 border-slate-900 pb-2 mb-4">🏛️ දේශපාලනඥයින්ගේ නිල Facebook පිටු</h2>
+            <!-- OTHER TAB SECTIONS -->
+            <section id="sec-politics" class="tab-content hidden p-4 border-2 border-slate-900 bg-white">
+                <h2 class="text-xl font-bold mb-4">🏛️ දේශපාලනඥයින්ගේ නිල Facebook පිටු</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div class="border-2 border-slate-900 p-3 bg-white">
                         <h3 class="font-bold text-slate-900">අනුර කුමාර දිසානායක</h3>
-                        <a href="https://www.facebook.com/AnuraDissanayakeOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
+                        <a href="https://www.facebook.com/AnuraDissanayakeOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook</a>
                     </div>
                     <div class="border-2 border-slate-900 p-3 bg-white">
                         <h3 class="font-bold text-slate-900">සජිත් ප්‍රේමදාස</h3>
-                        <a href="https://www.facebook.com/SajithPremadasaOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
+                        <a href="https://www.facebook.com/SajithPremadasaOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook</a>
                     </div>
                     <div class="border-2 border-slate-900 p-3 bg-white">
                         <h3 class="font-bold text-slate-900">හර්ෂ ද සිල්වා</h3>
-                        <a href="https://www.facebook.com/HarshadeSilvaLK" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
-                    </div>
-                    <div class="border-2 border-slate-900 p-3 bg-white">
-                        <h3 class="font-bold text-slate-900">දිලිත් ජයවීර</h3>
-                        <a href="https://www.facebook.com/DilithJayaweeraOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
-                    </div>
-                    <div class="border-2 border-slate-900 p-3 bg-white">
-                        <h3 class="font-bold text-slate-900">නාමල් රාජපක්ෂ</h3>
-                        <a href="https://www.facebook.com/NamalRajapaksaOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
-                    </div>
-                    <div class="border-2 border-slate-900 p-3 bg-white">
-                        <h3 class="font-bold text-slate-900">චන්ද්‍රිකා කුමාරතුංග</h3>
-                        <a href="https://www.facebook.com/CBKOfficial" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook පිටුව</a>
+                        <a href="https://www.facebook.com/HarshadeSilvaLK" target="_blank" class="text-xs bg-blue-600 text-white px-2 py-1 rounded inline-block mt-2 font-bold"><i class="fa-brands fa-facebook"></i> Facebook</a>
                     </div>
                 </div>
             </section>
 
-            <section id="sec-sports" class="tab-content hidden border-2 border-slate-900 p-4">
+            <section id="sec-sports" class="tab-content hidden border-2 border-slate-900 p-4 bg-white">
                 <h2 class="text-xl font-bold mb-3">🏆 ක්‍රීඩා තොරතුරු</h2>
                 <a href="https://www.srilankacricket.lk" target="_blank" class="text-blue-700 underline font-bold block mb-2">🏏 ශ්‍රී ලංකා ක්‍රිකට් නිල වෙබ් අඩවිය</a>
-                <a href="https://www.espncricinfo.com" target="_blank" class="text-blue-700 underline font-bold block">🔴 Cricinfo Live Score</a>
             </section>
-
-            <section id="sec-education" class="tab-content hidden border-2 border-slate-900 p-4">
+            <section id="sec-education" class="tab-content hidden border-2 border-slate-900 p-4 bg-white">
                 <h2 class="text-xl font-bold mb-3">🎓 අධ්‍යාපන</h2>
-                <a href="http://www.edupub.gov.lk" target="_blank" class="text-blue-700 underline font-bold block mb-2">📚 පාසල් පෙළපොත් භාගත කරන්න (Edupub)</a>
-                <a href="https://www.dpeducation.org" target="_blank" class="text-blue-700 underline font-bold block">💻 DP Education පාඨමාලා</a>
+                <a href="http://www.edupub.gov.lk" target="_blank" class="text-blue-700 underline font-bold block mb-2">📚 පාසල් පෙළපොත් (Edupub)</a>
             </section>
-
-            <section id="sec-world" class="tab-content hidden border-2 border-slate-900 p-4">
+            <section id="sec-world" class="tab-content hidden border-2 border-slate-900 p-4 bg-white">
                 <h2 class="text-xl font-bold mb-3">🌐 විදේශ පුවත්</h2>
-                <a href="https://www.bbc.com/news" target="_blank" class="text-blue-700 underline font-bold block mb-2">BBC News</a>
-                <a href="https://www.reuters.com" target="_blank" class="text-blue-700 underline font-bold block">Reuters News</a>
+                <a href="https://www.bbc.com/news" target="_blank" class="text-blue-700 underline font-bold block">BBC World News</a>
             </section>
-
-            <section id="sec-business" class="tab-content hidden border-2 border-slate-900 p-4">
+            <section id="sec-business" class="tab-content hidden border-2 border-slate-900 p-4 bg-white">
                 <h2 class="text-xl font-bold mb-3">📈 ව්‍යාපාරික පුවත්</h2>
-                <a href="https://www.cbsl.gov.lk" target="_blank" class="text-blue-700 underline font-bold block mb-2">🏦 ශ්‍රී ලංකා මහ බැංකුව</a>
-                <a href="https://www.cse.lk" target="_blank" class="text-blue-700 underline font-bold block">📉 කොළඹ කොටස් වෙළෙඳපොළ</a>
+                <a href="https://www.cbsl.gov.lk" target="_blank" class="text-blue-700 underline font-bold block">🏦 ශ්‍රී ලංකා මහ බැංකුව</a>
             </section>
-
-            <section id="sec-health" class="tab-content hidden border-2 border-slate-900 p-4">
+            <section id="sec-health" class="tab-content hidden border-2 border-slate-900 p-4 bg-white">
                 <h2 class="text-xl font-bold mb-3">🏥 සෞඛ්‍ය</h2>
-                <a href="https://www.health.gov.lk" target="_blank" class="text-blue-700 underline font-bold block mb-2">🏥 සෞඛ්‍ය අමාත්‍යාංශය</a>
-                <a href="https://www.echannelling.com" target="_blank" class="text-blue-700 underline font-bold block">👨‍⚕️ eChannelling</a>
+                <a href="https://www.health.gov.lk" target="_blank" class="text-blue-700 underline font-bold block">🏥 සෞඛ්‍ය අමාත්‍යාංශය</a>
             </section>
         </main>
-
     </div>
 
-    <!-- POPUP MODAL FOR FULL NEWS VIEW -->
+    <!-- POPUP MODAL -->
     <div id="newsModal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-xl rounded p-5 shadow-2xl border-2 border-slate-900 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-2 right-2 bg-red-600 text-white text-xs px-2.5 py-1 rounded font-bold">✕ වසන්න</button>
+            <button onclick="closeModal()" class="absolute top-2 right-2 bg-red-600 text-white text-xs px-2.5 py-1 rounded font-bold">✕ Close</button>
             <span id="modalSource" class="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded"></span>
             <h3 id="modalTitle" class="text-lg font-bold text-slate-900 mt-3 mb-2"></h3>
             <img id="modalImage" src="" class="w-full h-56 object-cover rounded border border-slate-300 my-2 hidden">
             <p id="modalBody" class="text-slate-700 text-xs md:text-sm leading-relaxed my-2"></p>
-            <a id="modalLink" href="#" target="_blank" class="inline-block bg-slate-900 text-white text-xs px-3 py-1.5 rounded font-bold mt-2">සම්පූර්ණ වෙබ් අඩවියට යන්න ➔</a>
+            <a id="modalLink" href="#" target="_blank" class="inline-block bg-slate-900 text-white text-xs px-3 py-1.5 rounded font-bold mt-2">Read Full Article ➔</a>
         </div>
     </div>
 
-    <!-- SCRIPT FOR RSS FEEDS -->
+    <!-- MULTI-LANGUAGE RSS SCRIPT -->
     <script>
-        const sources = {
-            derana: { name: "අද දෙරණ", rss: "https://sinhala.adaderana.lk/rss.php" },
-            hiru: { name: "හිරු News", rss: "https://www.hirunews.lk/rss/sinhala.xml" },
-            mawbima: { name: "මව්බිම", rss: "https://mawbima.lk/feed/" },
-            lankadeepa: { name: "ලංකාදීප", rss: "https://www.lankadeepa.lk/rss/latest_news/1" },
-            colombotimes: { name: "Colombo Times", rss: "https://colombotimes.lk/feed/" },
-            island: { name: "The Island", rss: "https://island.lk/feed/" },
-            morning: { name: "The Morning", rss: "https://www.themorning.lk/feed" },
-            virakesari: { name: "Virakesari", rss: "https://www.virakesari.lk/feed" }
-        };
-
+        let currentLang = 'si';
         let newsStore = {};
 
-        async function loadFeed(key) {
+        // Multilingual Feeds Map
+        const feedsMap = {
+            si: [
+                { id: 1, name: "අද දෙරණ", rss: "https://sinhala.adaderana.lk/rss.php" },
+                { id: 2, name: "Colombo Times", rss: "https://colombotimes.lk/feed/" },
+                { id: 3, name: "හිරු News", rss: "https://www.hirunews.lk/rss/sinhala.xml" },
+                { id: 4, name: "මව්බිම", rss: "https://mawbima.lk/feed/" },
+                { id: 5, name: "ලංකාදීප", rss: "https://www.lankadeepa.lk/rss/latest_news/1" },
+                { id: 6, name: "BBC සිංහල", rss: "https://www.bbc.com/sinhala/index.xml" },
+                { id: 7, name: "The Morning", rss: "https://www.themorning.lk/feed" },
+                { id: 8, name: "Virakesari", rss: "https://www.virakesari.lk/feed" }
+            ],
+            ta: [
+                { id: 1, name: "வீரகேசரி (Virakesari)", rss: "https://www.virakesari.lk/feed" },
+                { id: 2, name: "தினகரன் (Thinakaran)", rss: "https://www.thinakaran.lk/feed" },
+                { id: 3, name: "BBC தமிழ்", rss: "https://www.bbc.com/tamil/index.xml" },
+                { id: 4, name: "அததெரண (Derana Tamil)", rss: "https://tamil.adaderana.lk/rss.php" },
+                { id: 5, name: "தமிழ் மிரர்", rss: "https://www.tamilmirror.lk/rss/latest_news/101" },
+                { id: 6, name: "ஹிரு செய்தி", rss: "https://www.hirunews.lk/rss/tamil.xml" },
+                { id: 7, name: "Jaffna Monitor", rss: "https://jaffnamonitor.com/feed/" },
+                { id: 8, name: "NewsFirst Tamil", rss: "https://www.newsfirst.lk/ta/feed/" }
+            ],
+            en: [
+                { id: 1, name: "Daily Mirror", rss: "https://www.dailymirror.lk/rss/latest_news/158" },
+                { id: 2, name: "Colombo Gazette", rss: "https://colombogazette.com/feed/" },
+                { id: 3, name: "The Island", rss: "https://island.lk/feed/" },
+                { id: 4, name: "Ada Derana English", rss: "https://www.adaderana.lk/rss.php" },
+                { id: 5, name: "The Morning", rss: "https://www.themorning.lk/feed" },
+                { id: 6, name: "BBC World News", rss: "http://feeds.bbci.co.uk/news/rss.xml" },
+                { id: 7, name: "Hiru News English", rss: "https://www.hirunews.lk/rss/english.xml" },
+                { id: 8, name: "NewsFirst EN", rss: "https://www.newsfirst.lk/feed/" }
+            ]
+        };
+
+        const navTranslations = {
+            si: { home: "ප්‍රධාන පිටුව", politics: "දේශපාලන", sports: "ක්‍රීඩා", education: "අධ්‍යාපන", world: "විදේශ", business: "ව්‍යාපාර", health: "සෞඛ්‍ය", ticker: "🔥 නවතම තොරතුරු සජීවීව යාවත්කාලීන වේ..." },
+            ta: { home: "முகப்பு", politics: "அரசியல்", sports: "விளையாட்டு", education: "கல்வி", world: "உலகம்", business: "வணிகம்", health: "சுகாதாரம்", ticker: "🔥 நேரடி செய்திகள் உடனுக்குடன்..." },
+            en: { home: "Home", politics: "Politics", sports: "Sports", education: "Education", world: "World", business: "Business", health: "Health", ticker: "🔥 Breaking News Live Updates..." }
+        };
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button styles
+            ['si', 'ta', 'en'].forEach(l => {
+                const btn = document.getElementById(`lang-${l}`);
+                if(l === lang) {
+                    btn.className = "bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded";
+                } else {
+                    btn.className = "bg-gray-300 text-black font-bold text-xs px-2.5 py-1 rounded hover:bg-blue-600 hover:text-white";
+                }
+            });
+
+            // Update Nav Titles
+            const t = navTranslations[lang];
+            document.getElementById('nav-home').innerText = t.home;
+            document.getElementById('nav-politics').innerText = t.politics;
+            document.getElementById('nav-sports').innerText = t.sports;
+            document.getElementById('nav-education').innerText = t.education;
+            document.getElementById('nav-world').innerText = t.world;
+            document.getElementById('nav-business').innerText = t.business;
+            document.getElementById('nav-health').innerText = t.health;
+
+            // Reset Ticker
+            document.getElementById('ticker-text').innerHTML = `<span>${t.ticker}</span>`;
+
+            // Clear old data and load new language news
+            newsStore = {};
+            loadAllLanguageFeeds();
+        }
+
+        async function loadAllLanguageFeeds() {
+            const currentList = feedsMap[currentLang];
+            for (let item of currentList) {
+                fetchFeed(item);
+            }
+        }
+
+        async function fetchFeed(sourceInfo) {
             try {
-                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(sources[key].rss)}`);
+                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(sourceInfo.rss)}`);
                 const data = await res.json();
                 if(data.status === 'ok' && data.items.length > 0) {
                     const item = data.items[0];
@@ -300,61 +340,52 @@
                     }
                     let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '').trim() : '';
 
-                    newsStore[key] = {
-                        source: sources[key].name,
+                    newsStore[sourceInfo.id] = {
+                        source: sourceInfo.name,
                         title: item.title,
                         desc: cleanDesc,
                         image: imgUrl,
                         link: item.link
                     };
 
-                    updateUI(key);
+                    updateBoxUI(sourceInfo.id);
                 }
-            } catch(e) { console.log("Feed Error:", key); }
+            } catch(e) { console.log("Error loading feed:", sourceInfo.name); }
         }
 
-        function updateUI(key) {
-            const data = newsStore[key];
+        function updateBoxUI(id) {
+            const data = newsStore[id];
             if(!data) return;
 
-            if(key === 'derana') {
-                document.getElementById('derana-title').innerText = data.title;
-                document.getElementById('derana-desc').innerText = data.desc;
-                if(data.image) {
-                    const img = document.getElementById('derana-img');
-                    img.src = data.image;
-                    img.classList.remove('hidden');
-                }
-                document.getElementById('box-derana').onclick = () => openModal(key);
-            } else if(key === 'colombotimes') {
-                document.getElementById('ct-title').innerText = data.title;
-                document.getElementById('ct-desc').innerText = data.desc;
-                document.getElementById('box-colombotimes').onclick = () => openModal(key);
-            } else {
-                const titleEl = document.getElementById(`${key}-title`);
-                const imgEl = document.getElementById(`${key}-img`);
-                const cardEl = document.getElementById(`card-${key}`);
-                
-                if(titleEl) titleEl.innerText = data.title;
-                if(imgEl && data.image) {
-                    imgEl.src = data.image;
-                    imgEl.classList.remove('hidden');
-                }
-                if(cardEl) cardEl.onclick = () => openModal(key);
+            const tagEl = document.getElementById(`b${id}-tag`);
+            const titleEl = document.getElementById(`b${id}-title`);
+            const descEl = document.getElementById(`b${id}-desc`);
+            const imgEl = document.getElementById(`b${id}-img`);
+            const boxEl = document.getElementById(`box-${id}`);
+
+            if(tagEl) tagEl.innerText = data.source;
+            if(titleEl) titleEl.innerText = data.title;
+            if(descEl) descEl.innerText = data.desc;
+
+            if(imgEl && data.image) {
+                imgEl.src = data.image;
+                imgEl.classList.remove('hidden');
             }
 
-            // Ticker Update
+            if(boxEl) boxEl.onclick = () => openModal(id);
+
+            // Add to live Ticker
             const ticker = document.getElementById('ticker-text');
-            ticker.innerHTML += ` <span>🔥 ${data.source}: ${data.title}</span><span class="text-red-500"> ◀◀ </span>`;
+            ticker.innerHTML += ` <span class="mx-3">🔥 <b>${data.source}:</b> ${data.title}</span>`;
         }
 
-        function openModal(key) {
-            const data = newsStore[key];
+        function openModal(id) {
+            const data = newsStore[id];
             if(!data) return;
 
             document.getElementById('modalSource').innerText = data.source;
             document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalBody').innerText = data.desc || 'සම්පූර්ණ විස්තරය සඳහා වෙබ් අඩවියට පිවිසෙන්න.';
+            document.getElementById('modalBody').innerText = data.desc || 'සම්පූර්ණ පුවත කියවීමට පහත ලින්ක් එක භාවිතා කරන්න.';
             document.getElementById('modalLink').href = data.link;
 
             const modalImg = document.getElementById('modalImage');
@@ -378,12 +409,8 @@
             if(activeSec) activeSec.classList.remove('hidden');
         }
 
-        function changeLanguage(lang) {
-            console.log("Language switched to: " + lang);
-        }
-
-        // Fetch All Feeds
-        Object.keys(sources).forEach(key => loadFeed(key));
+        // Initial Load on Page Open
+        loadAllLanguageFeeds();
     </script>
 </body>
 </html>
